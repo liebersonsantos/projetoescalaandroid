@@ -69,6 +69,7 @@ public class ApresentacaoActivity extends AppCompatActivity implements Navigatio
                 , toolbar
                 , R.string.open_drawer
                 , R.string.close_drawer);
+        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.colorPrimary));
         drawerLayout.addDrawerListener(toggle);
 
         toggle.syncState();
@@ -262,7 +263,7 @@ public class ApresentacaoActivity extends AppCompatActivity implements Navigatio
                 Toast.makeText(this, "Item 4", Toast.LENGTH_SHORT).show();
                 break;
             }
-            case R.id.menu_item5: {
+            case R.id.menu_logoff: {
                 Toast.makeText(this, "Item 5", Toast.LENGTH_SHORT).show();
                 break;
             }

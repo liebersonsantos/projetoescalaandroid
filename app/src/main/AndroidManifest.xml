@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".view.LoginActivity" />
         <activity android:name=".view.CadastroActivity" />
-        <activity android:name=".view.ApresentacaoActivity"></activity>
+        <activity android:name=".view.ApresentacaoActivity" />
+        <activity android:name=".view.ExemploActivity"></activity>
     </application>
 
 </manifest>

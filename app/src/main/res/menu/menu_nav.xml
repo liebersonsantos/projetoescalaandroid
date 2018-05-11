@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:title="@string/edicao_atual"
+            android:id="@+id/menu_edicao_atual">
+        </item>
+
+        <item
+            android:title="Edições Anteriores"
+            android:id="@+id/menu_edicoes_anteriores">
+        </item>
+
+        <item
+            android:title="@string/clube_do_assinante"
+            android:id="@+id/menu_clube_assinante">
+        </item>
+
+        <item
+            android:title="@string/atendimento_ao_leitor"
+            android:id="@+id/menu_atendimento">
+        </item>
+
+        <item
+            android:title="@string/item_1"
+            android:id="@+id/menu_item1">
+        </item>
+
+        <item
+            android:title="@string/item_2"
+            android:id="@+id/menu_item2">
+        </item>
+
+        <item
+            android:title="@string/item_3"
+            android:id="@+id/menu_item3">
+        </item>
+
+        <item
+            android:title="@string/item_4"
+            android:id="@+id/menu_item4">
+        </item>
+
+        <item
+            android:title="@string/item_5"
+            android:id="@+id/menu_item5">
+        </item>
+
+    </group>
+
+
+</menu>

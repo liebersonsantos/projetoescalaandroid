@@ -1,10 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#c6b60e"
     tools:context=".view.fragment.TitulosFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/sete_dias_id"
+                android:layout_width="152dp"
+                android:layout_height="152dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/background_imagem_titulos"
+                android:paddingBottom="30dp"
+                android:paddingLeft="11dp"
+                android:paddingRight="11dp"
+                android:paddingTop="30dp"
+                android:src="@drawable/sete_dias"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/auto_facil_id"
+                android:layout_width="152dp"
+                android:layout_height="152dp"
+                android:paddingLeft="11dp"
+                android:paddingRight="11dp"
+                android:paddingTop="30dp"
+                android:paddingBottom="30dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/background_imagem_titulos"
+                android:src="@drawable/auto_f_cil_png"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sete_dias_id" />
+
+            <ImageView
+                android:id="@+id/casa_construcao_id"
+                android:layout_width="152dp"
+                android:layout_height="152dp"
+                android:paddingLeft="11dp"
+                android:paddingRight="11dp"
+                android:paddingTop="30dp"
+                android:paddingBottom="30dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/background_imagem_titulos"
+                android:src="@drawable/casa_contru_o_logo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/auto_facil_id" />
+
+            <ImageView
+                android:id="@+id/corpo_corpo_id"
+                android:layout_width="152dp"
+                android:layout_height="152dp"
+                android:paddingLeft="11dp"
+                android:paddingRight="11dp"
+                android:paddingTop="30dp"
+                android:paddingBottom="30dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/background_imagem_titulos"
+                android:src="@drawable/corpo_corpo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/casa_construcao_id" />
+
+            <ImageView
+                android:id="@+id/dieta_ja_id"
+                android:layout_width="152dp"
+                android:layout_height="152dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/background_imagem_titulos"
+                android:paddingBottom="30dp"
+                android:paddingLeft="11dp"
+                android:paddingRight="11dp"
+                android:paddingTop="30dp"
+                android:src="@drawable/dieta_j_png"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/corpo_corpo_id" />
+
+
+            <ImageView
+                android:id="@+id/atrevida_id"
+                android:layout_width="152dp"
+                android:layout_height="152dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/background_imagem_titulos"
+                android:paddingBottom="30dp"
+                android:paddingLeft="11dp"
+                android:paddingRight="11dp"
+                android:paddingTop="30dp"
+                android:src="@drawable/atrevida_png"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageView
+                android:id="@+id/car_drive_id"
+                android:layout_width="152dp"
+                android:layout_height="152dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/background_imagem_titulos"
+                android:paddingBottom="30dp"
+                android:paddingLeft="11dp"
+                android:paddingRight="11dp"
+                android:paddingTop="30dp"
+                android:src="@drawable/car_and_driver_logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/atrevida_id" />
+
+            <ImageView
+                android:id="@+id/conta_mais_id"
+                android:layout_width="152dp"
+                android:layout_height="152dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/background_imagem_titulos"
+                android:paddingBottom="30dp"
+                android:paddingLeft="11dp"
+                android:paddingRight="11dp"
+                android:paddingTop="30dp"
+                android:src="@drawable/conta_mais_2_png"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/car_drive_id" />
+
+            <ImageView
+                android:id="@+id/decorar_id"
+                android:layout_width="152dp"
+                android:layout_height="152dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/background_imagem_titulos"
+                android:paddingBottom="30dp"
+                android:paddingLeft="11dp"
+                android:paddingRight="11dp"
+                android:paddingTop="30dp"
+                android:src="@drawable/decorar_mais_por_menos_png"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/conta_mais_id" />
+
+            <ImageView
+                android:id="@+id/filosofia_id"
+                android:layout_width="152dp"
+                android:layout_height="152dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/background_imagem_titulos"
+                android:paddingBottom="30dp"
+                android:paddingLeft="11dp"
+                android:paddingRight="11dp"
+                android:paddingTop="30dp"
+                android:src="@drawable/filosofia_png"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/decorar_id" />
+
+
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+
+
+
+
 
 
 </FrameLayout>

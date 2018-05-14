@@ -31,4 +31,12 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ler_edicao_mes">LER EDIÇÃO DO MÊS</string>
+    <string name="ler_edicoes_anteriores">LER EDIÇÕES ANTERIORES</string>
+    <string name="conteudo_online">CONTEÚDO ONLINE</string>
+    <string name="texto_edicao_detale">A revista Corpo a Corpo traz nesta edição Patrícia Poeta! Ensina o segredo para secar e não engordar mais.</string>
+    <string name="ler_edicao">LER EDIÇÃO</string>
+    <string name="sos_verao">SOS versão! -3KG por semana! Com dieta alcalina + exercícios que modelam a barriga, os braços...</string>
+    <string name="texto_coco">O poder do coco! Receitas para eliminar peso e aumentar os músculos.</string>
+    <string name="texto_imagem_pe">Não perca o pique durante as férias! Treino com elástico (faça em qualquer lugar) e o jeito certo de adaptar seu esporte para a praia.</string>
 </resources>

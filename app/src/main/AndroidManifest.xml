@@ -19,7 +19,12 @@
         <activity android:name=".view.LoginActivity" />
         <activity android:name=".view.CadastroActivity" />
         <activity android:name=".view.ApresentacaoActivity" />
-        <activity android:name=".view.ExemploActivity"></activity>
+        <activity android:name=".view.ExemploActivity" />
+        <activity android:name=".view.ApresentacaoRevistaActivity" />
+        <activity android:name=".view.LerEdicaoMesActivity" />
+        <activity android:name=".view.TelaEdicaoMesActivity" />
+        <activity android:name=".view.AssineJaActivity" />
+        <activity android:name=".view.CompreAppActivity"></activity>
     </application>
 
 </manifest>

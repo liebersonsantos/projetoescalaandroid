@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/toolbar_revista"/>
+
+        <ImageView
+            android:id="@+id/imagem_detalhe_Id"
+            android:layout_width="214dp"
+            android:layout_height="292dp"
+            android:layout_marginBottom="250dp"
+            android:layout_marginEnd="73dp"
+            android:layout_marginLeft="73dp"
+            android:layout_marginRight="73dp"
+            android:layout_marginStart="73dp"
+            android:layout_marginTop="118dp"
+            android:src="@drawable/foto_corpo_corpo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/btn_edicao_mes_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_edicao_mes"
+            android:layout_marginEnd="55dp"
+            android:layout_marginLeft="55dp"
+            android:layout_marginRight="55dp"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="@string/ler_edicao_mes"
+            android:paddingLeft="41dp"
+            android:paddingRight="41dp"
+            android:paddingBottom="13dp"
+            android:paddingTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imagem_detalhe_Id" />
+
+        <Button
+            android:id="@+id/btn_edicao_anterior_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="55dp"
+            android:layout_marginLeft="55dp"
+            android:layout_marginRight="55dp"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/background_button_edicao_anterior"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:paddingBottom="13dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="15dp"
+            android:text="@string/ler_edicoes_anteriores"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_edicao_mes_id" />
+
+        <Button
+            android:id="@+id/btn_conteudo_on_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:layout_marginEnd="55dp"
+            android:layout_marginLeft="55dp"
+            android:layout_marginRight="55dp"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/background_button_online"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:paddingBottom="13dp"
+            android:paddingLeft="45dp"
+            android:paddingRight="44dp"
+            android:paddingTop="15dp"
+            android:text="@string/conteudo_online"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_edicao_anterior_id" />
+
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>

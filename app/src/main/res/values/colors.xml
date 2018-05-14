@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#00adef</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <!--<color name="colorAccent">#FF4081</color>-->
     <color name="colorAccent">#FFFFFF</color>
     <color name="colorToolbar">#FFFFFF</color>
     <color name="rippleEffectColor">#0417c1</color>
     <color name="colorButtonCad">#00adef</color>
+    <color name="colorButtonEdicaoOnLine">#8fc929</color>
+    <color name="colorButtonEdicaoOnLineRipple">#6da40b</color>
+    <color name="colorButtonEdicaoAnterior">#CCCCCC</color>
+    <color name="colorButtonEdicaoAnteriorRipple">#838080</color>
 </resources>

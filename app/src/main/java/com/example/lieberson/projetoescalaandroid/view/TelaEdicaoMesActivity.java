@@ -46,9 +46,9 @@ public class TelaEdicaoMesActivity extends AppCompatActivity {
                 dialog.setContentView(R.layout.activity_notificacao);
                 ImageView img_dialog_fullscreen_close = dialog.findViewById(R.id.btn_fechar_notificacao_id);
 
-                Button botaoAssine = findViewById(R.id.btn_assine_ja_id);
-                Button botaoCompreApp = findViewById(R.id.btn_compre_app_id);
-                TextView textoTelaLogin = findViewById(R.id.btn_tela_login_id);
+                Button botaoAssine = dialog.findViewById(R.id.btn_assine_ja_id);
+                Button botaoCompreApp = dialog.findViewById(R.id.btn_compre_app_id);
+                TextView textoTelaLogin = dialog.findViewById(R.id.btn_tela_login_id);
 
                 img_dialog_fullscreen_close.setOnClickListener(new View.OnClickListener() {
                     @Override

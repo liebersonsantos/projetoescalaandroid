@@ -24,7 +24,8 @@
         <activity android:name=".view.LerEdicaoMesActivity" />
         <activity android:name=".view.TelaEdicaoMesActivity" />
         <activity android:name=".view.AssineJaActivity" />
-        <activity android:name=".view.CompreAppActivity"></activity>
+        <activity android:name=".view.CompreAppActivity" />
+        <activity android:name=".view.TelaSaudacaoActivity"></activity>
     </application>
 
 </manifest>

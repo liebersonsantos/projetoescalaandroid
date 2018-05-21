@@ -10,14 +10,29 @@
     </style>
 
     <!--<style name="PopupMenuTheme" parent="ThemeOverlay.AppCompat.Light">-->
-        <!--<item name="background">@android:color/white</item>-->
-        <!--<item name="color"></item>-->
+    <!--<item name="background">@android:color/white</item>-->
+    <!--<item name="color"></item>-->
     <!--</style>-->
 
     <style name="DialogFullscreen" parent="@android:style/Theme.Material.Light.DialogWhenLarge" tools:targetApi="lollipop">
         <item name="android:windowNoTitle">true</item>
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="CustomTextStyle" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="MyTabPageIndicator">
+        <item name="android:divider">@drawable/divisor</item>
+        <item name="android:showDividers">middle</item>
+        <item name="android:dividerPadding">12dp</item>
     </style>
 
 </resources>

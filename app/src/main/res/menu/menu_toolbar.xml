@@ -13,11 +13,6 @@
         app:showAsAction="always"
         android:title="Buscar" />
 
-    <!--<item-->
-        <!--android:id="@+id/draId"-->
-        <!--android:icon="@drawable/ic_dehaze_black_24dp"-->
-        <!--app:showAsAction="always"-->
-        <!--android:title="" />-->
 
 
 </menu>

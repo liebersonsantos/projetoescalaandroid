@@ -39,4 +39,11 @@
     <string name="sos_verao">SOS versão! -3KG por semana! Com dieta alcalina + exercícios que modelam a barriga, os braços...</string>
     <string name="texto_coco">O poder do coco! Receitas para eliminar peso e aumentar os músculos.</string>
     <string name="texto_imagem_pe">Não perca o pique durante as férias! Treino com elástico (faça em qualquer lugar) e o jeito certo de adaptar seu esporte para a praia.</string>
+    <string name="title_activity_tab">TabActivity</string>
+    <string name="tab_lancamentos">Lançamentos</string>
+    <string name="tab_minha_banca">Minha Banca</string>
+    <string name="tab_categorias">Categorias</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="tab_titulos">Títulos</string>
 </resources>

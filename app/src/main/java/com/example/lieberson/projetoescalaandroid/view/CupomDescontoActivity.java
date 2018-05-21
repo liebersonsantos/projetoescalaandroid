@@ -11,28 +11,23 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.lieberson.projetoescalaandroid.R;
 
-public class ApresentacaoRevistaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class CupomDescontoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private android.support.v7.widget.Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
 
-    private Button botaoLerEdicaoMes;
-
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_apresentacao_revista);
+        setContentView(R.layout.activity_cumpom_desconto);
 
-        toolbar = findViewById(R.id.toolbar_revista_id);
+        toolbar = findViewById(R.id.toolbar_clube_assinante_Id);
         toolbar.inflateMenu(R.menu.menu_toolbar);
 
         drawerLayout = findViewById(R.id.drawerLayoutId);
@@ -47,21 +42,8 @@ public class ApresentacaoRevistaActivity extends AppCompatActivity implements Na
 
         toggle.syncState();
 
-        navigationView = findViewById(R.id.navViewRevistaId);
+        navigationView = findViewById(R.id.navViewCupomId);
         navigationView.setNavigationItemSelectedListener(this);
-
-        botaoLerEdicaoMes = findViewById(R.id.btn_edicao_mes_id);
-
-        botaoLerEdicaoMes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(ApresentacaoRevistaActivity.this, LerEdicaoMesActivity.class);
-                startActivity(intent);
-                finish();
-
-            }
-        });
 
     }
 
@@ -81,7 +63,6 @@ public class ApresentacaoRevistaActivity extends AppCompatActivity implements Na
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
         switch (item.getItemId()) {
 
             case R.id.menu_edicao_atual: {
@@ -93,8 +74,6 @@ public class ApresentacaoRevistaActivity extends AppCompatActivity implements Na
                 break;
             }
             case R.id.menu_clube_assinante: {
-
-
                 Intent intent = new Intent(this, CupomDescontoActivity.class);
                 startActivity(intent);
                 //Toast.makeText(this, "Clube do Assinante", Toast.LENGTH_SHORT).show();
@@ -132,8 +111,8 @@ public class ApresentacaoRevistaActivity extends AppCompatActivity implements Na
         return true;
     }
 
-//    @Override
-//    public void onPointerCaptureChanged(boolean hasCapture) {
-//
-//    }
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
 }

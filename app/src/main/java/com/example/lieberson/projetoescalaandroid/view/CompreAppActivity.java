@@ -109,7 +109,9 @@ public class CompreAppActivity extends AppCompatActivity implements NavigationVi
                 break;
             }
             case R.id.menu_clube_assinante: {
-                Toast.makeText(this, "Clube do Assinante", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, CupomDescontoActivity.class);
+                startActivity(intent);
+                //Toast.makeText(this, "Clube do Assinante", Toast.LENGTH_SHORT).show();
                 break;
             }
             case R.id.menu_atendimento: {

@@ -1,69 +1,108 @@
 package com.example.lieberson.projetoescalaandroid.view;
 
 import android.content.Intent;
-import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.lieberson.projetoescalaandroid.R;
+import com.example.lieberson.projetoescalaandroid.view.fragment.CategoriasFragment;
+import com.example.lieberson.projetoescalaandroid.view.fragment.LancamentosFragment;
+import com.example.lieberson.projetoescalaandroid.view.fragment.MinhaBancaFragment;
+import com.example.lieberson.projetoescalaandroid.view.fragment.TitulosFragment;
 
-public class ApresentacaoRevistaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private FragmentStatePagerAdapter framentStatePageAdapter;
     private android.support.v7.widget.Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
 
-    private Button botaoLerEdicaoMes;
+    private FrameLayout container;
 
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private ViewPager mViewPager;
+
+    private int tabSize;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_apresentacao_revista);
+        setContentView(R.layout.activity_base);
 
-        toolbar = findViewById(R.id.toolbar_revista_id);
-        toolbar.inflateMenu(R.menu.menu_toolbar);
-
-        drawerLayout = findViewById(R.id.drawerLayoutId);
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this
-                , drawerLayout
-                , toolbar
-                , R.string.open_drawer
-                , R.string.close_drawer);
-        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.colorPrimary));
-        drawerLayout.addDrawerListener(toggle);
-
-        toggle.syncState();
-
-        navigationView = findViewById(R.id.navViewRevistaId);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        botaoLerEdicaoMes = findViewById(R.id.btn_edicao_mes_id);
-
-        botaoLerEdicaoMes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(ApresentacaoRevistaActivity.this, LerEdicaoMesActivity.class);
-                startActivity(intent);
-                finish();
-
-            }
-        });
+        container = findViewById(R.id.container);
 
     }
+
+    public void setTabsPage() {
+
+        mViewPager = (ViewPager) findViewById(R.id.container_viewpager);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+
+        if (mViewPager != null) {
+
+            mViewPager.setAdapter(framentStatePageAdapter);
+            mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        }
+
+        if (tabLayout != null) {
+
+            tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+            tabLayout.setVisibility(View.VISIBLE);
+
+        }
+
+    }
+
+    public void setContainerView(int layout) {
+
+        View view = getLayoutInflater().inflate(layout, null);
+        container.addView(view);
+        setNavigationDrawer();
+
+    }
+
+    private void setNavigationDrawer() { //--> --> --> ctrl + alt + m cria metodo
+
+        toolbar = findViewById(R.id.toolbarId);
+        drawerLayout = findViewById(R.id.drawerLayoutId);
+
+        if (toolbar != null) {
+
+            toolbar.inflateMenu(R.menu.menu_toolbar);
+            setSupportActionBar(toolbar);
+
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this
+                    , drawerLayout
+                    , toolbar
+                    , R.string.open_drawer
+                    , R.string.close_drawer);
+            toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.colorPrimary));
+            drawerLayout.addDrawerListener(toggle);
+
+            toggle.syncState();
+        }
+
+        navigationView = findViewById(R.id.navViewId);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
 
     //esse metodo faz com que, quando o botao de retorno do aparelho for pressionado, o drawer feche ao inves de sair do app
     @Override
@@ -132,8 +171,11 @@ public class ApresentacaoRevistaActivity extends AppCompatActivity implements Na
         return true;
     }
 
-//    @Override
-//    public void onPointerCaptureChanged(boolean hasCapture) {
-//
-//    }
+    public void setFragmentsPageAdapter(FragmentStatePagerAdapter adapter){
+
+        this.framentStatePageAdapter = adapter;
+    }
+
+
+
 }

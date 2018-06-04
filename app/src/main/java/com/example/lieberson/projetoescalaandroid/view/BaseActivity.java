@@ -26,12 +26,16 @@ import com.example.lieberson.projetoescalaandroid.view.fragment.LancamentosFragm
 import com.example.lieberson.projetoescalaandroid.view.fragment.MinhaBancaFragment;
 import com.example.lieberson.projetoescalaandroid.view.fragment.TitulosFragment;
 
+import io.reactivex.disposables.CompositeDisposable;
+
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private FragmentStatePagerAdapter framentStatePageAdapter;
     private android.support.v7.widget.Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    protected CompositeDisposable disposable = new CompositeDisposable(); //guarda os caras que encadeiam as stream do rx
+
 
     private FrameLayout container;
 
@@ -176,6 +180,13 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         this.framentStatePageAdapter = adapter;
     }
 
+    @Override
+    protected void onDestroy() {
+        if (disposable != null){
+            disposable.dispose();
+        }
 
+        super.onDestroy();
 
+    }
 }

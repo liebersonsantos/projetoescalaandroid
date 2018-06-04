@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "63303417662",
+    "firebase_url": "https://projetoescalaandroid.firebaseio.com",
+    "project_id": "projetoescalaandroid",
+    "storage_bucket": "projetoescalaandroid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:63303417662:android:cee93d65313768a4",
+        "android_client_info": {
+          "package_name": "com.example.lieberson.projetoescalaandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "63303417662-h6he8t5sh5q1eiqel4mvshgkrprosh66.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lieberson.projetoescalaandroid",
+            "certificate_hash": "3b2bc446af4c672ef43dda626759d9190fc15359"
+          }
+        },
+        {
+          "client_id": "63303417662-5jif17chnt1v5fadap7t6kv3antmu94i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8_uXixG91KumhcDfAq9djzKG_CbAXbEc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "63303417662-5jif17chnt1v5fadap7t6kv3antmu94i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

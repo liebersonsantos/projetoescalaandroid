@@ -1,15 +1,19 @@
 package com.example.lieberson.projetoescalaandroid.view;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.lieberson.projetoescalaandroid.R;
 import com.example.lieberson.projetoescalaandroid.helper.Constantes;
 import com.example.lieberson.projetoescalaandroid.helper.SHA1;
+import com.example.lieberson.projetoescalaandroid.model.RegisterErrors;
 import com.example.lieberson.projetoescalaandroid.model.Usuario;
 import com.example.lieberson.projetoescalaandroid.network.RestClient;
 import com.google.android.gms.auth.api.Auth;
@@ -33,7 +37,10 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
-import retrofit2.Callback;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.HttpException;
 import retrofit2.Response;
 
 public class CadastroActivity extends BaseActivity implements GoogleApiClient.OnConnectionFailedListener {
@@ -45,11 +52,14 @@ public class CadastroActivity extends BaseActivity implements GoogleApiClient.On
     private String grantedScopes;
     private String senhaCodificada;
     private int tipo;
+    private ProgressDialog progressDialog;
 
     private GoogleApiClient googleApiClient;
     private FirebaseAuth mAuth;
     private FirebaseUser firebaseUser;
+    private Usuario usuario;
 
+    private CompositeDisposable disposable = new CompositeDisposable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +81,9 @@ public class CadastroActivity extends BaseActivity implements GoogleApiClient.On
             } else if (tipo == Constantes.LOGINGOOGLE) {
                 System.out.println("LOGINGOOGLE OK");
                 initGoogle();
-            }else {
+            } else {
                 System.out.println("LOGINCOMUM");
-        }
+            }
 
         }
 
@@ -84,7 +94,7 @@ public class CadastroActivity extends BaseActivity implements GoogleApiClient.On
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 //        System.out.println(firebaseUser.getMetadata());
-        if (firebaseUser != null){
+        if (firebaseUser != null) {
 
             String nome = firebaseUser.getDisplayName();
             String email = firebaseUser.getEmail();
@@ -94,7 +104,7 @@ public class CadastroActivity extends BaseActivity implements GoogleApiClient.On
             cadNome.setText(nome);
             cadEmail.setText(email);
             cadConfirmaEmail.setText(email);
-        }else {
+        } else {
 
             System.out.println("ESSA MERDA ESTA VINDO NULA LA DA CASA DO GUINA");
         }
@@ -137,7 +147,7 @@ public class CadastroActivity extends BaseActivity implements GoogleApiClient.On
             GoogleSignInResult result = pendingResult.get();
             handleSignInResult(result);
 
-        }else {
+        } else {
             pendingResult.setResultCallback(new ResultCallback<GoogleSignInResult>() {
                 @Override
                 public void onResult(@NonNull GoogleSignInResult googleSignInResult) {
@@ -150,9 +160,8 @@ public class CadastroActivity extends BaseActivity implements GoogleApiClient.On
 
     private void criarConta() {
 
-        botaoCriarConta.setOnClickListener(v -> {
-
-            Usuario usuario = new Usuario();
+        botaoCriarConta.setOnClickListener((View v) -> {
+            usuario = new Usuario();
 
             try {
                 senhaCodificada = SHA1.codandoSHA1(cadSenha.getText().toString().trim());
@@ -173,87 +182,93 @@ public class CadastroActivity extends BaseActivity implements GoogleApiClient.On
             System.out.println("TELEFONE " + usuario.getTelefone());
 
 
-            RestClient.getInstance(CadastroActivity.this).createUser(usuario).enqueue(new Callback<Usuario>() {
-                @Override
-                public void onResponse(@NonNull retrofit2.Call<Usuario> call, @NonNull Response<Usuario> response) {
-
-                    if(response.code() == 200) {
-
-                        System.out.println("Status: "+response.body() +" Resultado: "+response.body().getResultado());
-                    } else {
-
-                        Gson gson = new Gson();
+//            RestClient.getInstance(CadastroActivity.this).createUser(usuario).enqueue(new Callback<Usuario>() {
+//                @Override
+//                public void onResponse(@NonNull retrofit2.Call<Usuario> call, @NonNull Response<Usuario> response) {
+//
+//                    if(response.code() == 200) {
+//
+//                        System.out.println("Status: "+response.body() +" Resultado: "+response.body().getResultado());
+//                        Toast.makeText(CadastroActivity.this, "Usuário Cadastrado com Sucesso", Toast.LENGTH_LONG).show();
+//
+//
+//                    } else {
+//
+//                        Gson gson = new Gson();
 //                        try {
 //
-////                            if (response.errorBody() != null){
-////                                Error error = gson.fromJson(response.errorBody().string(), Error.class);
-////                                error.setContext(getApplicationContext());
-////                                error.printError();
-////                            }
+//                            if (response.errorBody() != null){
+//
+//                                Errors error = gson.fromJson(response.errorBody().string(), Errors.class);
+//                                Toast.makeText(CadastroActivity.this, error.getError(), Toast.LENGTH_LONG).show();
+//
+//
+//                            }
 //                        } catch (IOException e) {
 //                            e.printStackTrace();
 //                        }
+//
+//                    }
+//
+//                }
+//
+//                @Override
+//                public void onFailure(retrofit2.Call<Usuario> call, Throwable t) {
+//
+//                    Log.i("TAG", "onFailure: " + t.getCause().toString());
+//
+//                }
+//            });
 
-                    }
+            disposable.add(RestClient.getInstance().createUser(usuario)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe(disposable1 -> {
+                        // colocar o loading para a tela
 
-                }
+                        progressDialog.setMessage("Cadastrando Dados...");
+                        progressDialog.show();
 
-                @Override
-                public void onFailure(retrofit2.Call<Usuario> call, Throwable t) {
+                    })
+                    .doAfterTerminate(() -> {
+                        // tirar o loading pra ma tela
 
-                    Log.i("TAG", "onFailure: " + t.getCause().toString());
-                    Log.i("TAG", "onFailure: " + t.getCause().toString());
-//                    Log.i("TAG", "onFailure: " + t);
+                        if (progressDialog.isShowing()) {
+                            progressDialog.dismiss();
+                        }
 
-                }
-            });
+                    })
+                    .doOnError(throwable -> {
 
-//            disposable.add(RestClient.getInstance().createUser(usuario)
-//            .subscribeOn(Schedulers.newThread())
-//                    .observeOn(AndroidSchedulers.mainThread())
-//                    .doOnSubscribe(disposable -> {
-//                        //habilitar load ==> enquanto estiver trabalhando mostrara um load na tela
-//                    })
-//                    .doAfterTerminate(() -> { //quando terminar desabilito o load
-//
-//                    })
-//                    .doOnError(throwable -> { //faça alguma coisa quando tiver um erro
-//
-//                        Log.i("TAG", "doOnError:  " + throwable.getMessage());
-//                        Log.i("TAG", "doOnError:  " + throwable.getCause());
-//
-//                    })
-//                    .subscribe(responseBody -> { //resposta do servidor
-//
-//                            System.out.println("RESPONSEBODY OK ====> USUARIO CADASTRADO COM SUCESSO");
-//
-//                            Toast.makeText(this, "Usuário Cadastrado com sucesso!", Toast.LENGTH_LONG).show();
-//                            cadNome.setText(" ");
-//                            cadSenha.setText(" ");
-//                            cadConfirmaSenha.setText(" ");
-//                            cadFone.setText(" ");
-//                            cadEmail.setText(" ");
-//                            cadConfirmaEmail.setText(" ");
-//
-//                            Log.i("TAG", "responseBodyCode: " + responseBody.code());
-//                            Log.i("TAG", "responseBodyErrorBody: " + responseBody.errorBody());
-//                            Log.i("TAG", "responseBodyBody: " + responseBody.body());
-//                            Log.i("TAG", "responseBodyRawMessage: " + responseBody.raw().message());
-//                            Log.i("TAG", "responseBodyRaw: " + responseBody.raw());
-//
-////                        goLogin();
-//
-//                    }, throwable -> { //erro do servidor cairá aqui
-//
-//                        Log.i("TAG", "onError:  " + throwable.getMessage());
-//                        System.out.println("ERRO NO SERVIDOR *******");
-//
-//                    })
-//            );
+                        if (throwable instanceof HttpException) {
+                            HttpException exception = (HttpException) throwable;
+                            RegisterErrors registerErrors = clearErrorsLoginResponse(exception.response());
 
+                            Log.i("TAG", "Falha no cadastro: " + registerErrors.getErrors().get(0));
+                            // mostrar a mensagem do servidor pro usuario
 
+                            Toast.makeText(CadastroActivity.this, registerErrors.getErrors().get(0), Toast.LENGTH_LONG).show();
+                        }
 
-////                goLogin();
+                    })
+                    .subscribe(loginResponse -> {
+
+                        // liberar a tela pro usuario e ir para home
+                        if (loginResponse.code() != 200) {
+                            RegisterErrors registerErrors = clearErrorsLoginResponse(loginResponse);
+                            Toast.makeText(CadastroActivity.this, registerErrors.getErrors().get(0), Toast.LENGTH_LONG).show();
+                        } else {
+                            Log.i("TAG", "criarConta: " + loginResponse.code());
+                            Toast.makeText(CadastroActivity.this, "Cadastro Realizado com Sucesso", Toast.LENGTH_LONG).show();
+                        }
+
+                    }, throwable -> {
+
+                        // mostrar a mensagem pro usuario, de error
+                        Log.i("TAG", "criarConta: " + throwable.getMessage());
+
+                    })
+            );
         });
     }
 
@@ -267,6 +282,7 @@ public class CadastroActivity extends BaseActivity implements GoogleApiClient.On
         cadFone = findViewById(R.id.edit_cad_fone);
         cadSenha = findViewById(R.id.edit_cad_senha);
         cadConfirmaSenha = findViewById(R.id.edit_cad_confirma_senha);
+        progressDialog = new ProgressDialog(this);
     }
 
     private void handleSignInResult(GoogleSignInResult result) {
@@ -275,7 +291,7 @@ public class CadastroActivity extends BaseActivity implements GoogleApiClient.On
 //        System.out.println("RESULTADO " + result.toString());
         try {
 
-            if (result.isSuccess()){
+            if (result.isSuccess()) {
                 GoogleSignInAccount account = result.getSignInAccount();
                 //   firebaseAuthGoogle(re);
 
@@ -293,9 +309,8 @@ public class CadastroActivity extends BaseActivity implements GoogleApiClient.On
                 System.out.println("GRANTED ---> " + grantedScopes);
 
 
-
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.getLocalizedMessage();
 
         }
@@ -318,17 +333,16 @@ public class CadastroActivity extends BaseActivity implements GoogleApiClient.On
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        if (task.isSuccessful()){
+                        if (task.isSuccessful()) {
 
                             System.out.println("SUCESSO");
                             FirebaseUser firebaseUser = mAuth.getCurrentUser();
                             System.out.println("USer " + firebaseUser);
 
-                        }else {
+                        } else {
 
                             System.out.println("FALHA");
                         }
-
                     }
                 });
     }
@@ -349,4 +363,19 @@ public class CadastroActivity extends BaseActivity implements GoogleApiClient.On
 
     }
 
+    private RegisterErrors clearErrorsLoginResponse(Response<?> response) {
+        Gson gson = new Gson();
+        RegisterErrors registerErrors = new RegisterErrors();
+        try {
+            if (response.errorBody() != null) {
+                String res = response.errorBody().string();
+                registerErrors = gson.fromJson(res, RegisterErrors.class);
+                return registerErrors;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return registerErrors;
+    }
 }

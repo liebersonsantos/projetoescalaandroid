@@ -19,15 +19,38 @@ public class RestClient {
 
     private static Retrofit retrofit;
 
-    public static Api getInstance(Context context) {
+    public static Api getInstance() {
 
 
         if (retrofit == null) {
             OkHttpClient httpClient = new OkHttpClient.Builder()
                     .addNetworkInterceptor(new StethoInterceptor()) //vejo o que mando e recebo
-                    .readTimeout(20, TimeUnit.SECONDS)
-                    .connectTimeout(10, TimeUnit.SECONDS)
-                    .writeTimeout(20, TimeUnit.SECONDS)
+                    .readTimeout(60, TimeUnit.SECONDS)
+                    .connectTimeout(60, TimeUnit.SECONDS)
+                    .writeTimeout(60, TimeUnit.SECONDS)
+                    .build();
+
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(Constantes.URL_BASE)
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(httpClient)
+                    .build();
+        }
+
+
+        return retrofit.create(Api.class);
+    }
+
+    public static Api getInstanceLogin(Context context) {
+
+
+        if (retrofit == null) {
+            OkHttpClient httpClient = new OkHttpClient.Builder()
+                    .addNetworkInterceptor(new StethoInterceptor()) //vejo o que mando e recebo
+                    .readTimeout(60, TimeUnit.SECONDS)
+                    .connectTimeout(60, TimeUnit.SECONDS)
+                    .writeTimeout(60, TimeUnit.SECONDS)
                     .addInterceptor(chain -> {
                         Request request = chain.request();
 

@@ -16,8 +16,8 @@ import retrofit2.http.PUT;
 public interface Api {
 
     @POST("wsCreateUser")
-    Call<Usuario> createUser(@Body Usuario usuario);
-//    Single<retrofit2.Response<Void>> createUser(@Body Usuario usuario);    //Single => Dessa forma trabalhando reativamente-----será apenas um obj
+//    Call<Usuario> createUser(@Body Usuario usuario);
+    Single<retrofit2.Response<Void>> createUser(@Body Usuario usuario);    //Single => Dessa forma trabalhando reativamente-----será apenas um obj
 
     @GET("wsForgotPassword")
     Single<Response> forgotPassword(String email);

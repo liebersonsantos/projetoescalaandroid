@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.lieberson.projetoescalaandroid.R;
+import com.example.lieberson.projetoescalaandroid.adapters.AdapterLogin;
 import com.example.lieberson.projetoescalaandroid.adapters.RecyclerViewLancamentosAdapter;
 import com.example.lieberson.projetoescalaandroid.model.Revistas;
 
@@ -39,18 +40,38 @@ public class LancamentosFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_lancamentos, container, false);
 
-        recyclerView = view.findViewById(R.id.recyclerviewlancamento_id);
+        revistasList = gerarDados(10);
 
-        revistasList = new ArrayList<>();
-        adapter = new RecyclerViewLancamentosAdapter(this, revistasList);
-
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-
+        recyclerView = view.findViewById(R.id.recyclerView_lanc_id);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        adapter = new RecyclerViewLancamentosAdapter(this, revistasList);
         recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+
+
 
         return view;
+    }
+
+    private List<Revistas> gerarDados(int quant) {
+
+        List<Revistas> revistas = new ArrayList<>();
+
+        for (int i = 0; i < quant; i++) {
+
+            Revistas revistas1 = new Revistas();
+            revistas1.setId(i);
+            revistas1.setCategoria("categoria " + i);
+            revistas1.setDataLancamento("00/00/00");
+            revistas1.setNomeRevista("nome " + i);
+            revistas1.setDescricao("descricao " + i);
+            revistas1.setUrl_revista("http://cleooficial.com/wp-content/uploads/2018/02/capa-revista-marie-claire-julho-2016-cleo-pires-bancas.jpg");
+
+            revistas.add(revistas1);
+
+        }
+
+        return revistas;
     }
 
 

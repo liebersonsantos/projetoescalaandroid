@@ -12,6 +12,7 @@ public class Preferencias {
 
     private final String CHAVE_EMAIL = "emailLogado";
     private final String CHAVE_SENHA = "senhaLogada";
+    private final String CHAVE_TOKEN = "tokenLogado";
 
     public Preferencias( Context contextoParametro){
 
@@ -21,10 +22,11 @@ public class Preferencias {
 
     }
 
-    public void salvarDados( String emailLogado, String senhaLogada){
+    public void salvarDados( String emailLogado, String senhaLogada, String tokenLogado){
 
         editor.putString(CHAVE_EMAIL, emailLogado);
         editor.putString(CHAVE_SENHA, senhaLogada);
+        editor.putString(CHAVE_TOKEN, tokenLogado);
         editor.commit();
 
     }
@@ -37,6 +39,7 @@ public class Preferencias {
         return preferences.getString(CHAVE_SENHA, null);
     }
 
+    public String getToken(){return preferences.getString(CHAVE_TOKEN, null);   }
 
 
 }

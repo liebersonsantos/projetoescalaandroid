@@ -1,5 +1,6 @@
 package com.example.lieberson.projetoescalaandroid.view;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -7,21 +8,27 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lieberson.projetoescalaandroid.BuildConfig;
 import com.example.lieberson.projetoescalaandroid.R;
+import com.example.lieberson.projetoescalaandroid.adapters.AdapterLogin;
 import com.example.lieberson.projetoescalaandroid.helper.Constantes;
 import com.example.lieberson.projetoescalaandroid.helper.Preferencias;
 import com.example.lieberson.projetoescalaandroid.helper.SHA1;
 import com.example.lieberson.projetoescalaandroid.model.Errors;
 import com.example.lieberson.projetoescalaandroid.model.Login;
 import com.example.lieberson.projetoescalaandroid.model.LoginResponse;
+import com.example.lieberson.projetoescalaandroid.model.Revistas;
 import com.example.lieberson.projetoescalaandroid.model.Usuario;
 import com.example.lieberson.projetoescalaandroid.network.RestClient;
 import com.facebook.AccessToken;
@@ -47,11 +54,16 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
+import com.shaishavgandhi.loginbuttons.FacebookButton;
+import com.shaishavgandhi.loginbuttons.GoogleButton;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -67,14 +79,18 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private AppCompatEditText senhaLogin;
     private AppCompatEditText emailLogin;
     private Button botaoLogar;
+    private ProgressDialog progressDialog;
+    private RecyclerView recyclerView;
+    private List<Revistas> revistas;
+    private AdapterLogin adapterLogin;
 
     private android.support.v7.widget.Toolbar toolbar;
 
     private GoogleApiClient googleApiClient;
-    private SignInButton botaoGoogle;
+    private GoogleButton botaoGoogle;
     public static final int SIGN_IN_CODE = 777;
 
-    private LoginButton loginFacebook;
+    private FacebookButton loginFacebook;
     private CallbackManager callbackManager;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
@@ -90,6 +106,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        progressDialog = new ProgressDialog(this);
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
@@ -230,11 +248,44 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         textCadastro = findViewById(R.id.text_faca_cadastro);
         botaoLogar = findViewById(R.id.btn_logar_id);
 
+        revistas = gerarDados(10);
+
+        recyclerView = findViewById(R.id.recyclerView_id);
+
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+//        recyclerView.setNestedScrollingEnabled(false);
+        adapterLogin = new AdapterLogin(this, revistas);
+        recyclerView.setAdapter(adapterLogin);
+
+
+
         botaoGoogle = findViewById(R.id.btn_google_id);
-        botaoGoogle.setSize(SignInButton.SIZE_ICON_ONLY);
+//        botaoGoogle.setSize(SignInButton.SIZE_ICON_ONLY);
 
         loginFacebook = findViewById(R.id.login_buttonF_id);
 
+    }
+
+    private List<Revistas> gerarDados(int quant) {
+
+       List<Revistas> revistas = new ArrayList<>();
+
+        for (int i = 0; i < quant; i++) {
+
+            Revistas revistas1 = new Revistas();
+            revistas1.setId(i);
+            revistas1.setCategoria("categoria " + i);
+            revistas1.setDataLancamento("00/00/00");
+            revistas1.setNomeRevista("nome " + i);
+            revistas1.setDescricao("descricao " + i);
+            revistas1.setUrl_revista("http://misturaurbana.com/wp-content/uploads/2013/11/playboy_sincera.jpg");
+
+            revistas.add(revistas1);
+
+        }
+
+        return revistas;
     }
 
     private void botaoLogar() {
@@ -253,9 +304,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 e.printStackTrace();
             }
 
-            Preferencias preferencias = new Preferencias(LoginActivity.this);
-            preferencias.salvarDados(email, senhaCodificada);
-
             usuario.setEmail(email);
             usuario.setSenha(senhaCodificada);
 
@@ -266,26 +314,45 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             login.setVersion((float) BuildConfig.VERSION_CODE);
 
 
-            disposable.add(RestClient.getInstance(LoginActivity.this).login(login)
+
+            disposable.add(RestClient.getInstanceLogin(LoginActivity.this).login(login)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .doOnSubscribe(disposable1 -> {
-                        // colocar o loading pra ma tela
+                        // colocar o loading para a tela
+
+                        progressDialog.setMessage("Carregando Dados...");
+                        progressDialog.show();
+
                     })
                     .doAfterTerminate(() -> {
                         // tirar o loading pra ma tela
+
+                        if (progressDialog.isShowing()){
+                            progressDialog.dismiss();
+                        }
+
                     })
                     .doOnError(throwable -> {
 
                         HttpException exception = (HttpException) throwable;
                         LoginResponse loginResponse = clearErrorsLoginResponse(exception.response());
                         Log.i("TAG", "doOnError: " + loginResponse.getErrors().getError());
-
                         // mostrar a mensagem do servidor pro usuario
+
+                        Toast.makeText(LoginActivity.this, loginResponse.getErrors().getError(), Toast.LENGTH_LONG).show();
+
                     })
                     .subscribe(loginResponse -> {
+
                         Log.i("TAG", "onResponse: " + loginResponse.getToken());
                         // liberar a tela pro usuario e ir para home
+                        Preferencias preferencias = new Preferencias(LoginActivity.this);
+                        preferencias.salvarDados(email, senhaCodificada, loginResponse.getToken());
+
+                        Intent intent = new Intent(this, ApresentacaoActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
 
                     }, throwable -> {
                         Log.i("TAG", "throwable: " + throwable.getMessage());

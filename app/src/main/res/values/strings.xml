@@ -46,8 +46,11 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="tab_titulos">Títulos</string>
+    <string name="cadastre_se"><u>Cadastre-se</u></string>
 
     <string name="facebook_app_id">1814075425325664</string>
-    <string name="fb_login_protocol_scheme">fb1814075425325664</string>Copiar código
+    <string name="fb_login_protocol_scheme">fb1814075425325664</string>
+    <string name="ainda_n_o_tem_cadastro">Ainda não tem Cadastro?</string>
+    <string name="navegue_gratis">NAVEGUE GRÁTIS</string>Copiar código
 
 </resources>

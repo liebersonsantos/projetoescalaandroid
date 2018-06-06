@@ -2,6 +2,7 @@ package com.example.lieberson.projetoescalaandroid.helper;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 public class Preferencias {
 
@@ -40,6 +41,15 @@ public class Preferencias {
     }
 
     public String getToken(){return preferences.getString(CHAVE_TOKEN, null);   }
+
+    public void clearPreferences(){
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(contexto);
+        SharedPreferences.Editor editor1 = sharedPreferences.edit();
+        editor1.clear();
+        editor1.commit();
+    }
+
 
 
 }

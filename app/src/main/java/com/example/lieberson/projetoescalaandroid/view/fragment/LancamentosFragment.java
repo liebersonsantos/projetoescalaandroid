@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.lieberson.projetoescalaandroid.R;
-import com.example.lieberson.projetoescalaandroid.adapters.AdapterLogin;
 import com.example.lieberson.projetoescalaandroid.adapters.RecyclerViewLancamentosAdapter;
 import com.example.lieberson.projetoescalaandroid.model.Revistas;
 
@@ -73,6 +72,5 @@ public class LancamentosFragment extends Fragment {
 
         return revistas;
     }
-
 
 }

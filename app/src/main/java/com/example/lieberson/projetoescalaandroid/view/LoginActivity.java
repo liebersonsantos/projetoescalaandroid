@@ -315,6 +315,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
 
 
+            Preferencias preferencias = new Preferencias(LoginActivity.this);
+            preferencias.clearPreferences();
+            preferencias.salvarDados(email, senhaCodificada, "");
+//            preferencias.salvarDados(email, senhaCodificada, loginResponse.getToken());
+
             disposable.add(RestClient.getInstanceLogin(LoginActivity.this).login(login)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -344,15 +349,15 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
                     })
                     .subscribe(loginResponse -> {
-
                         Log.i("TAG", "onResponse: " + loginResponse.getToken());
                         // liberar a tela pro usuario e ir para home
-                        Preferencias preferencias = new Preferencias(LoginActivity.this);
-                        preferencias.salvarDados(email, senhaCodificada, loginResponse.getToken());
+
+                        Toast.makeText(LoginActivity.this, "Login realizado com Sucesso", Toast.LENGTH_LONG).show();
 
                         Intent intent = new Intent(this, ApresentacaoActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
+
 
                     }, throwable -> {
                         Log.i("TAG", "throwable: " + throwable.getMessage());

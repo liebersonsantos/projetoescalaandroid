@@ -279,7 +279,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             revistas1.setDataLancamento("00/00/00");
             revistas1.setNomeRevista("nome " + i);
             revistas1.setDescricao("descricao " + i);
-            revistas1.setUrl_revista("http://misturaurbana.com/wp-content/uploads/2013/11/playboy_sincera.jpg");
+            revistas1.setUrl_revista("https://cdnstatic8.com/temporalcerebral.com.br/wp-content/uploads/2015/10/5-dicas-design-de-capas-revistas-1-gq.jpg");
 
             revistas.add(revistas1);
 

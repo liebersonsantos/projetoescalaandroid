@@ -21,6 +21,7 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.lieberson.projetoescalaandroid.R;
+import com.example.lieberson.projetoescalaandroid.helper.Preferencias;
 import com.example.lieberson.projetoescalaandroid.view.fragment.CategoriasFragment;
 import com.example.lieberson.projetoescalaandroid.view.fragment.LancamentosFragment;
 import com.example.lieberson.projetoescalaandroid.view.fragment.MinhaBancaFragment;
@@ -164,7 +165,12 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
                 break;
             }
             case R.id.menu_logoff: {
-                Toast.makeText(this, "Item 5", Toast.LENGTH_SHORT).show();
+                Preferencias preferencias = new Preferencias(this);
+                preferencias.clearPreferences();
+
+                Intent intent = new Intent(this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 break;
             }
 

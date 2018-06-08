@@ -7,51 +7,13 @@
     tools:context=".view.fragment.MinhaBancaFragment">
 
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/imageView19"
-            android:layout_width="136dp"
-            android:layout_height="178dp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/img1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView15"
-            android:layout_width="136dp"
-            android:layout_height="178dp"
-            android:layout_marginEnd="35dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="35dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/img2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.508"
-            app:layout_constraintStart_toEndOf="@+id/imageView19"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:layout_width="136dp"
-            android:layout_height="178dp"
-            android:layout_marginEnd="213dp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginRight="213dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/img3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView19" />
+   <android.support.v7.widget.RecyclerView
+       android:id="@+id/recyclerView_banca_id"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
 
 
-    </android.support.constraint.ConstraintLayout>
+   </android.support.v7.widget.RecyclerView>
 
 
 </FrameLayout>

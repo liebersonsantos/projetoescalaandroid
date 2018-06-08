@@ -1,24 +1,30 @@
 package com.example.lieberson.projetoescalaandroid.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.lieberson.projetoescalaandroid.R;
 import com.example.lieberson.projetoescalaandroid.model.Revistas;
+import com.example.lieberson.projetoescalaandroid.view.ApresentacaoActivity;
+import com.example.lieberson.projetoescalaandroid.view.LoginActivity;
+import com.example.lieberson.projetoescalaandroid.view.PdfView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class AdapterLogin extends RecyclerView.Adapter<AdapterLogin.LancamentosViewHolder>{
 
-    private Context mContext;
+    private static Context mContext;
     private List<Revistas> revistasList;
+
 
     public AdapterLogin(Context mContext, List<Revistas> revistasList) {
         this.mContext = mContext;
@@ -53,6 +59,7 @@ public class AdapterLogin extends RecyclerView.Adapter<AdapterLogin.LancamentosV
     public static class LancamentosViewHolder extends RecyclerView.ViewHolder{
 
         public TextView nomeRevista, dataLancamento;
+        private Button botaoFree;
         public ImageView capa;
         private View view;
 
@@ -64,7 +71,6 @@ public class AdapterLogin extends RecyclerView.Adapter<AdapterLogin.LancamentosV
 //            nomeRevista = itemView.findViewById(R.id.txt_nome_revista);
 //            dataLancamento = itemView.findViewById(R.id.txt_mes_lancamento);
             capa = itemView.findViewById(R.id.img_revista_id);
-
 
         }
     }

@@ -152,6 +152,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 finish();
             }
         });
+
     }
 
     private void logarFacebook() {
@@ -292,32 +293,40 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
         botaoLogar.setOnClickListener(v -> {
 
-            usuario = new Usuario();
+            if (emailLogin.getText().toString().isEmpty() || senhaLogin.getText().toString().isEmpty()){
+                Toast.makeText(this, "Insira os seus dados corretamente", Toast.LENGTH_LONG).show();
 
-            String email = emailLogin.getText().toString().trim();
+            }else {
 
-            try {
-                senhaCodificada = SHA1.codandoSHA1(senhaLogin.getText().toString().trim());
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
+                usuario = new Usuario();
+
+                String email = emailLogin.getText().toString().trim();
+
+                try {
+                    senhaCodificada = SHA1.codandoSHA1(senhaLogin.getText().toString().trim());
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+
+                usuario.setEmail(email);
+                usuario.setSenha(senhaCodificada);
+
+                /*SETTANDO LOGIN*/
+                login = new Login();
+                login.setToken("");
+                login.setType(Constantes.LOGINCOMUM);
+                login.setVersion((float) BuildConfig.VERSION_CODE);
+
+                Preferencias preferencias = new Preferencias(LoginActivity.this);
+                preferencias.clearPreferences();
+//                preferencias.salvarDados("", "", "");
+                preferencias.salvarDados(email, senhaCodificada, "");
             }
 
-            usuario.setEmail(email);
-            usuario.setSenha(senhaCodificada);
-
-            /*SETTANDO LOGIN*/
-            login = new Login();
-            login.setToken("");
-            login.setType(Constantes.LOGINCOMUM);
-            login.setVersion((float) BuildConfig.VERSION_CODE);
 
 
-
-            Preferencias preferencias = new Preferencias(LoginActivity.this);
-            preferencias.clearPreferences();
-            preferencias.salvarDados(email, senhaCodificada, "");
 //            preferencias.salvarDados(email, senhaCodificada, loginResponse.getToken());
 
             disposable.add(RestClient.getInstanceLogin(LoginActivity.this).login(login)

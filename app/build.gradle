@@ -69,11 +69,16 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:${rootProject.rxjava}"
     /*############################################################################*/
 
-    /*#############MULTIDEX#############*/
+    /*#############MULTIDEX##############*/
     implementation "com.android.support:multidex:${rootProject.multidex}"
 
     /*#############BUTTONS###############*/
     implementation 'com.shaishavgandhi:login-buttons:1.0.0'
+
+    /*##############PDF Viewer###########*/
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+
+    implementation "commons-io:commons-io:+"
 
     /*############Testes##########*/
     testImplementation 'junit:junit:4.12'

@@ -1,35 +1,39 @@
 {
   "project_info": {
-    "project_number": "63303417662",
-    "firebase_url": "https://projetoescalaandroid.firebaseio.com",
-    "project_id": "projetoescalaandroid",
-    "storage_bucket": "projetoescalaandroid.appspot.com"
+    "project_number": "1060980404031",
+    "firebase_url": "https://escalaandroid.firebaseio.com",
+    "project_id": "escalaandroid",
+    "storage_bucket": "escalaandroid.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:63303417662:android:cee93d65313768a4",
+        "mobilesdk_app_id": "1:1060980404031:android:a1200d04892eb11b",
         "android_client_info": {
-          "package_name": "com.example.lieberson.projetoescalaandroid"
+          "package_name": "br.com.escala.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "63303417662-h6he8t5sh5q1eiqel4mvshgkrprosh66.apps.googleusercontent.com",
+          "client_id": "1060980404031-jgl27ad72259o3vvuudeukigqo55mjvg.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.lieberson.projetoescalaandroid",
-            "certificate_hash": "3b2bc446af4c672ef43dda626759d9190fc15359"
+            "package_name": "br.com.escala.app",
+            "certificate_hash": "b0adbc6eb84e33eb8894cd0476e107a31ad81b4d"
           }
         },
         {
-          "client_id": "63303417662-5jif17chnt1v5fadap7t6kv3antmu94i.apps.googleusercontent.com",
+          "client_id": "1060980404031-brv46fd4e4dobpf5gcabcce8gjrrlpcv.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1060980404031-brv46fd4e4dobpf5gcabcce8gjrrlpcv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA8_uXixG91KumhcDfAq9djzKG_CbAXbEc"
+          "current_key": "AIzaSyDegngGROrX_BaKd9KW6K47-2XmwfJBvu8"
         }
       ],
       "services": {
@@ -40,7 +44,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "63303417662-5jif17chnt1v5fadap7t6kv3antmu94i.apps.googleusercontent.com",
+              "client_id": "1060980404031-brv46fd4e4dobpf5gcabcce8gjrrlpcv.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
-    tools:context=".view.BaseActivity">
+    tools:context="br.com.escala.app.view.BaseActivity">
 
 
     <FrameLayout

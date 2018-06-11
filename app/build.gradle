@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.example.lieberson.projetoescalaandroid"
+        applicationId "br.com.escala.app"
         minSdkVersion 15
         targetSdkVersion 27
         versionCode 1
@@ -26,7 +26,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.1'
     implementation 'com.android.support:support-v4:27.1.1'
 
     /*############Material Design###########*/
@@ -47,7 +47,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:11.8.0'
     implementation 'com.google.android.gms:play-services-auth:11.8.0'
     implementation 'com.google.android.gms:play-services-identity:11.8.0'
-    implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
+    implementation 'com.facebook.android:facebook-android-sdk:4.33.0'
 
     /*############################ Retrofit ######################################*/
     implementation "com.squareup.retrofit2:adapter-rxjava2:${rootProject.retrofit}"
@@ -65,8 +65,8 @@ dependencies {
     /*############################################################################*/
 
     /*########################### ReactiveX ######################################*/
-    implementation "io.reactivex.rxjava2:rxandroid:${rootProject.rxandroid}"
     implementation "io.reactivex.rxjava2:rxjava:${rootProject.rxjava}"
+    implementation "io.reactivex.rxjava2:rxandroid:${rootProject.rxandroid}"
     /*############################################################################*/
 
     /*#############MULTIDEX##############*/

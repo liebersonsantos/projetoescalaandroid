@@ -7,7 +7,7 @@
     android:background="#e1dede"
     android:fillViewport="true"
     android:orientation="vertical"
-    tools:context=".view.CadastroActivity">
+    tools:context="br.com.escala.app.view.CadastroActivity">
 
 
     <android.support.constraint.ConstraintLayout

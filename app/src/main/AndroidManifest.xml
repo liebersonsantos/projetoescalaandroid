@@ -1,36 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.lieberson.projetoescalaandroid">
+    package="br.com.escala.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
-        android:name=".CustomApplication"
+        android:name="br.com.escala.app.CustomApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.SplashActivity">
+        <activity android:name="br.com.escala.app.view.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.LoginActivity" />
-        <activity android:name=".view.CadastroActivity" />
-        <activity android:name=".view.ApresentacaoActivity" />
-        <activity android:name=".view.ExemploActivity" />
-        <activity android:name=".view.ApresentacaoRevistaActivity" />
-        <activity android:name=".view.LerEdicaoMesActivity" />
-        <activity android:name=".view.TelaEdicaoMesActivity" />
-        <activity android:name=".view.AssineJaActivity" />
-        <activity android:name=".view.CompreAppActivity" />
-        <activity android:name=".view.TelaSaudacaoActivity" />
-        <activity android:name=".view.CupomDescontoActivity" />
-        <activity android:name=".view.BaseActivity" />
+        <activity android:name="br.com.escala.app.view.LoginActivity" />
+        <activity android:name="br.com.escala.app.view.CadastroActivity" />
+        <activity android:name="br.com.escala.app.view.ApresentacaoActivity" />
+        <activity android:name="br.com.escala.app.view.ExemploActivity" />
+        <activity android:name="br.com.escala.app.view.ApresentacaoRevistaActivity" />
+        <activity android:name="br.com.escala.app.view.LerEdicaoMesActivity" />
+        <activity android:name="br.com.escala.app.view.TelaEdicaoMesActivity" />
+        <activity android:name="br.com.escala.app.view.AssineJaActivity" />
+        <activity android:name="br.com.escala.app.view.CompreAppActivity" />
+        <activity android:name="br.com.escala.app.view.TelaSaudacaoActivity" />
+        <activity android:name="br.com.escala.app.view.CupomDescontoActivity" />
+        <activity android:name="br.com.escala.app.view.BaseActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -52,7 +54,18 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.PdfView"></activity>
+        <activity android:name="br.com.escala.app.view.PdfViewActivity"/>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+
     </application>
 
 </manifest>

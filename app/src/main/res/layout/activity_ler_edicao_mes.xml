@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
-    tools:context=".view.ApresentacaoRevistaActivity">
+    tools:context="br.com.escala.app.view.ApresentacaoRevistaActivity">
 
     <include layout="@layout/activity_ler_edicao_mes_detalhe"/>
 

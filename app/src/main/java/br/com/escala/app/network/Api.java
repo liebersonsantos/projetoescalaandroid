@@ -43,4 +43,5 @@ public interface Api {
     @GET("wsMagazines")
     Call<List<Revista>> Magazines();
 
+
 }

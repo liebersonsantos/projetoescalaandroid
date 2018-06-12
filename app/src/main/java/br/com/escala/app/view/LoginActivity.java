@@ -148,7 +148,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 finish();
             }
         });
-
     }
 
     private void logarFacebook() {
@@ -170,7 +169,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                 String idUserFacebook = AccessToken.getCurrentAccessToken().getUserId();
                                 System.out.println("TOKENFACE ==> " + tokenFacebook);
                                 System.out.println("IDUSERFACEBOOK ==> " + idUserFacebook);
-
 
                             }
 
@@ -245,7 +243,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         textCadastro = findViewById(R.id.text_faca_cadastro);
         botaoLogar = findViewById(R.id.btn_logar_id);
 
-        revistas = gerarDados(10);
+        revistas = gerarDados(13);
 
         recyclerView = findViewById(R.id.recyclerView_id);
 

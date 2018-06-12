@@ -35,7 +35,7 @@ public class RecyclerViewLancamentosAdapter extends RecyclerView.Adapter<Recycle
     @Override
     public LancamentosViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_lancamentos, parent, false);
+                .inflate(R.layout.content_lancamentos, parent, false);
 
         return new LancamentosViewHolder(view);
     }
@@ -52,7 +52,7 @@ public class RecyclerViewLancamentosAdapter extends RecyclerView.Adapter<Recycle
 
         ImageUtil.loadImage(revista.getImage(), holder.imageViewCover, holder.progressBar, R.drawable.logo);
 
-        holder.btnNavigationFree.setOnClickListener(v -> {
+        holder.imageDownloadPdf.setOnClickListener(v -> {
 
             Intent intent = new Intent(v.getContext(), PdfViewActivity.class);
             intent.putExtra("URL", revista.getUrlPdf());
@@ -74,7 +74,7 @@ public class RecyclerViewLancamentosAdapter extends RecyclerView.Adapter<Recycle
     public static class LancamentosViewHolder extends RecyclerView.ViewHolder{
 
         public TextView nomeRevista, dataLancamento;
-        public ImageView imageViewCover;
+        public ImageView imageViewCover, imageDownloadPdf;
         private Button btnNavigationFree;
         private View view;
         private ProgressBar progressBar;
@@ -89,7 +89,7 @@ public class RecyclerViewLancamentosAdapter extends RecyclerView.Adapter<Recycle
             imageViewCover = itemView.findViewById(R.id.img_revista_id);
             progressBar = itemView.findViewById(R.id.progress_bar);
             btnNavigationFree = itemView.findViewById(R.id.btn_nav_free_id);
-
+            imageDownloadPdf = itemView.findViewById(R.id.img_download_pdf);
 
         }
     }

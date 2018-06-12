@@ -31,7 +31,7 @@ public class AdapterLogin extends RecyclerView.Adapter<AdapterLogin.LancamentosV
     @Override
     public AdapterLogin.LancamentosViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.content_lancamentos, parent, false);
+                .inflate(R.layout.item_login, parent, false);
 
         return new AdapterLogin.LancamentosViewHolder(view);
     }

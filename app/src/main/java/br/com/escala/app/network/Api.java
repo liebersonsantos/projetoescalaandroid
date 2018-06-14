@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.escala.app.model.Login;
 import br.com.escala.app.model.LoginToken;
+import br.com.escala.app.model.MagazineRespose;
 import br.com.escala.app.model.Revista;
 import br.com.escala.app.model.Usuario;
 import io.reactivex.Single;
@@ -37,10 +38,10 @@ public interface Api {
 
     @Streaming
     @Headers({"Content-Type: application/x-www-form-urlencoded", "Connection: keep-alive", "User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36 OPR/46.0.2597.57", "Cache-Control: max-age=640000"})
-    @GET("/{path}")
-    Single<ResponseBody> downloadFileWithDynamicUrlSync(@Path("path") String path);
+    @GET("escala/upload/revistas/{path}")
+    Single<ResponseBody> downloadFile(@Path(value = "path", encoded = true) String path);
 
     @GET("wsMagazines")
-    Call<List<Revista>> Magazines();
+    Call<MagazineRespose> magazines();
 
 }

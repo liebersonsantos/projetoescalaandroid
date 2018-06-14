@@ -18,17 +18,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import br.com.escala.app.BuildConfig;
-import br.com.escala.app.R;
-import br.com.escala.app.adapters.AdapterLogin;
-import br.com.escala.app.helper.Constantes;
-import br.com.escala.app.helper.Preferencias;
-import br.com.escala.app.helper.SHA1;
-import br.com.escala.app.model.Login;
-import br.com.escala.app.model.LoginResponse;
-import br.com.escala.app.model.Revista;
-import br.com.escala.app.model.Usuario;
-import br.com.escala.app.network.RestClient;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -56,13 +45,27 @@ import com.shaishavgandhi.loginbuttons.GoogleButton;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import br.com.escala.app.BuildConfig;
+import br.com.escala.app.R;
+import br.com.escala.app.adapters.AdapterLogin;
+import br.com.escala.app.helper.Constantes;
+import br.com.escala.app.helper.Preferencias;
+import br.com.escala.app.helper.SHA1;
+import br.com.escala.app.model.Login;
+import br.com.escala.app.model.LoginResponse;
+import br.com.escala.app.model.MagazineRespose;
+import br.com.escala.app.model.Revista;
+import br.com.escala.app.model.Usuario;
+import br.com.escala.app.network.RestClient;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.HttpException;
 import retrofit2.Response;
 
@@ -112,6 +115,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 //        toolbar.inflateMenu(R.menu.menu_toolbar);
 
         initViews();
+        settingsAdapter();
+        getWsMagazines();
 
         callbackManager = CallbackManager.Factory.create();
         mAuth = FirebaseAuth.getInstance();
@@ -148,6 +153,15 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 finish();
             }
         });
+    }
+
+    private void settingsAdapter() {
+
+        adapterLogin = new AdapterLogin();
+
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(adapterLogin);
     }
 
     private void logarFacebook() {
@@ -242,47 +256,66 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         senhaLogin = findViewById(R.id.edit_senha_id);
         textCadastro = findViewById(R.id.text_faca_cadastro);
         botaoLogar = findViewById(R.id.btn_logar_id);
-
-        revistas = gerarDados(13);
-
         recyclerView = findViewById(R.id.recyclerView_id);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-//        recyclerView.setNestedScrollingEnabled(false);
-        adapterLogin = new AdapterLogin(revistas);
-        recyclerView.setAdapter(adapterLogin);
-
-
+//        revistas = gerarDados(13);
 
         botaoGoogle = findViewById(R.id.btn_google_id);
 //        botaoGoogle.setSize(SignInButton.SIZE_ICON_ONLY);
 
         loginFacebook = findViewById(R.id.login_buttonF_id);
+    }
+
+    private void getWsMagazines() {
+
+        RestClient.getInstance().magazines().enqueue(new Callback<MagazineRespose>() {
+            @Override
+            public void onResponse(Call<MagazineRespose> call, Response<MagazineRespose> response) {
+
+                if (response.isSuccessful() && response.body() != null){
+
+                    adapterLogin.setRevistaList(response.body().getRevistas());
+                }else {
+
+                    System.out.println("ERRO ao carregar as imagens");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<MagazineRespose> call, Throwable t) {
+
+                Toast.makeText(LoginActivity.this, "Erro ao carregar Dados", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
-    private List<Revista> gerarDados(int quant) {
 
-       List<Revista> revistas = new ArrayList<>();
 
-        for (int i = 0; i < quant; i++) {
 
-            Revista revista1 = new Revista();
-            revista1.setId(i);
-            revista1.setCategoria("categoria " + i);
-            revista1.setDataLancamento("00/00/00");
-            revista1.setNomeRevista("nome " + i);
-            revista1.setDescricao("descricao " + i);
-            revista1.setImage("https://cdnstatic8.com/temporalcerebral.com.br/wp-content/uploads/2015/10/5-dicas-design-de-capas-revistas-1-gq.jpg");
-            revista1.setUrlPdf("/scielobooks/38m/pdf/santos-9788523209087.pdf");
 
-            revistas.add(revista1);
-
-        }
-
-        return revistas;
-    }
+//    private List<Revista> gerarDados(int quant) {
+//
+//       List<Revista> revistas = new ArrayList<>();
+//
+//        for (int i = 0; i < quant; i++) {
+//
+//            Revista revista1 = new Revista();
+//            revista1.setId(i);
+//            revista1.setCategoria("categoria " + i);
+//            revista1.setDataLancamento("00/00/00");
+//            revista1.setNomeRevista("nome " + i);
+//            revista1.setDescricao("descricao " + i);
+//            revista1.setImage("https://cdnstatic8.com/temporalcerebral.com.br/wp-content/uploads/2015/10/5-dicas-design-de-capas-revistas-1-gq.jpg");
+//            revista1.setUrlPdf("/scielobooks/38m/pdf/santos-9788523209087.pdf");
+//
+//            revistas.add(revista1);
+//
+//        }
+//
+//        return revistas;
+//    }
 
     private void botaoLogar() {
 

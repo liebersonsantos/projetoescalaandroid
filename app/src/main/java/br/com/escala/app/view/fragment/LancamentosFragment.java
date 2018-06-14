@@ -59,12 +59,12 @@ public class LancamentosFragment extends Fragment {
 
             Revista revista1 = new Revista();
             revista1.setId(i);
-            revista1.setCategoria("categoria " + i);
+            revista1.setCategoria_id("categoria " + i);
             revista1.setDataLancamento("00/00/00");
             revista1.setNomeRevista("nome " + i);
             revista1.setDescricao("descricao " + i);
             revista1.setImage("http://cleooficial.com/wp-content/uploads/2018/02/capa-revista-marie-claire-julho-2016-cleo-pires-bancas.jpg");
-            revista1.setUrlPdf("/scielobooks/38m/pdf/santos-9788523209087.pdf");
+            revista1.setUrlPdfFree("/scielobooks/38m/pdf/santos-9788523209087.pdf");
 
             revistas.add(revista1);
 

@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import br.com.escala.app.R;
 import br.com.escala.app.helper.Constantes;
+import br.com.escala.app.model.Revista;
 import br.com.escala.app.network.RestClient;
 
 import com.github.barteksc.pdfviewer.PDFView;
@@ -46,7 +47,7 @@ public class PdfViewActivity extends BaseActivity {
     private static int REQUEST_WRITE_PERMISSIONS = 0;
     private PDFView pdfView;
     private ProgressBar progressBar;
-    private String path = ("santos-9788523209087.pdf");
+    private String path;
     private CompositeDisposable disposable = new CompositeDisposable();
     private String fileName = "";
     private String url;
@@ -56,8 +57,10 @@ public class PdfViewActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdf_view);
 
+
         url = getIntent().getStringExtra("URL");
         fileName = getIntent().getStringExtra("FILE_NAME");
+        path = getIntent().getStringExtra("PATH");
 
         progressBar = findViewById(R.id.progressBar);
 
@@ -70,7 +73,7 @@ public class PdfViewActivity extends BaseActivity {
 
     private void getPdf(String url) {
 
-        disposable.add(RestClient.getInstancePDF(Constantes.URL_BASE_PDF).downloadFileWithDynamicUrlSync(url)
+        disposable.add(RestClient.getInstancePDF(url).downloadFile(path)
                 .flatMap(this::saveFile)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

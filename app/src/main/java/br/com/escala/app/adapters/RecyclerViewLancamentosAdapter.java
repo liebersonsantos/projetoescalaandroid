@@ -55,7 +55,7 @@ public class RecyclerViewLancamentosAdapter extends RecyclerView.Adapter<Recycle
         holder.imageDownloadPdf.setOnClickListener(v -> {
 
             Intent intent = new Intent(v.getContext(), PdfViewActivity.class);
-            intent.putExtra("URL", revista.getUrlPdf());
+            intent.putExtra("URL", revista.getUrlPdfFree());
             intent.putExtra("FILE", revista.getId() + ".pdf");
             v.getContext().startActivity(intent);
 

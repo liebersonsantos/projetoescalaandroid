@@ -9,10 +9,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import br.com.escala.app.R;
 import br.com.escala.app.adapters.RecyclerViewLancamentosAdapter;
+import br.com.escala.app.model.Login;
+import br.com.escala.app.model.MagazineRespose;
 import br.com.escala.app.model.Revista;
+import br.com.escala.app.network.RestClient;
+import br.com.escala.app.view.LoginActivity;
+import br.com.escala.app.view.PdfViewActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +34,12 @@ public class LancamentosFragment extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerViewLancamentosAdapter adapter;
     private List<Revista> revistaList;
+    private LoginActivity loginActivity;
 
 
     public LancamentosFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,39 +47,69 @@ public class LancamentosFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_lancamentos, container, false);
 
-        revistaList = gerarDados(10);
+//        revistaList = gerarDados(10);
 
         recyclerView = view.findViewById(R.id.recyclerView_lanc_id);
+
+        adapter = new RecyclerViewLancamentosAdapter();
+
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        adapter = new RecyclerViewLancamentosAdapter(this, revistaList);
         recyclerView.setAdapter(adapter);
 
-
+        getWsMagazineOn();
 
         return view;
     }
 
-    private List<Revista> gerarDados(int quant) {
+    private void getWsMagazineOn() {
 
-        List<Revista> revistas = new ArrayList<>();
+        RestClient.getInstance().magazines().enqueue(new Callback<MagazineRespose>() {
+            @Override
+            public void onResponse(Call<MagazineRespose> call, Response<MagazineRespose> response) {
 
-        for (int i = 0; i < quant; i++) {
+                if (response.isSuccessful() && response.body() != null){
 
-            Revista revista1 = new Revista();
-            revista1.setId(i);
-            revista1.setCategoria_id("categoria " + i);
-            revista1.setDataLancamento("00/00/00");
-            revista1.setNomeRevista("nome " + i);
-            revista1.setDescricao("descricao " + i);
-            revista1.setImage("http://cleooficial.com/wp-content/uploads/2018/02/capa-revista-marie-claire-julho-2016-cleo-pires-bancas.jpg");
-            revista1.setUrlPdfFree("/scielobooks/38m/pdf/santos-9788523209087.pdf");
+                    adapter.setRevistaList(response.body().getRevistas());
+                }else {
 
-            revistas.add(revista1);
+                    System.out.println("ERRO ao carregar as imagens");
+                }
 
-        }
+            }
 
-        return revistas;
+            @Override
+            public void onFailure(Call<MagazineRespose> call, Throwable t) {
+
+                Toast.makeText(getContext(), "Erro ao carregar Dados", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 }
+
+
+
+
+//    private List<Revista> gerarDados(int quant) {
+//
+//        List<Revista> revistas = new ArrayList<>();
+//
+//        for (int i = 0; i < quant; i++) {
+//
+//            Revista revista1 = new Revista();
+//            revista1.setId(i);
+//            revista1.setCategoria_id("categoria " + i);
+//            revista1.setDataLancamento("00/00/00");
+//            revista1.setNomeRevista("nome " + i);
+//            revista1.setDescricao("descricao " + i);
+//            revista1.setImage("http://cleooficial.com/wp-content/uploads/2018/02/capa-revista-marie-claire-julho-2016-cleo-pires-bancas.jpg");
+//            revista1.setUrlPdfFree("/scielobooks/38m/pdf/santos-9788523209087.pdf");
+//
+//            revistas.add(revista1);
+//
+//        }
+//
+//        return revistas;
+//    }

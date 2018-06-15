@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import br.com.escala.app.R;
+import br.com.escala.app.helper.Constantes;
 import br.com.escala.app.helper.ImageUtil;
 import br.com.escala.app.model.Revista;
 import br.com.escala.app.view.PdfViewActivity;
@@ -19,6 +20,7 @@ import br.com.escala.app.view.fragment.LancamentosFragment;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewLancamentosAdapter extends RecyclerView.Adapter<RecyclerViewLancamentosAdapter.LancamentosViewHolder>{
@@ -26,10 +28,14 @@ public class RecyclerViewLancamentosAdapter extends RecyclerView.Adapter<Recycle
     private LancamentosFragment mContext;
     private List<Revista> revistaList;
 
-    public RecyclerViewLancamentosAdapter(LancamentosFragment mContext, List<Revista> revistaList) {
-        this.mContext = mContext;
-        this.revistaList = revistaList;
+    public RecyclerViewLancamentosAdapter() {
+        revistaList = new ArrayList<>();
     }
+
+//    public RecyclerViewLancamentosAdapter(LancamentosFragment mContext, List<Revista> revistaList) {
+//        this.mContext = mContext;
+//        this.revistaList = revistaList;
+//    }
 
     @NonNull
     @Override
@@ -37,36 +43,23 @@ public class RecyclerViewLancamentosAdapter extends RecyclerView.Adapter<Recycle
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.content_lancamentos, parent, false);
 
-        return new LancamentosViewHolder(view);
+        return new RecyclerViewLancamentosAdapter.LancamentosViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull LancamentosViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerViewLancamentosAdapter.LancamentosViewHolder holder, int position) {
 
 //        holder.nomeRevista.setText(revistaList.get(position).getNomeRevista());
 //        holder.dataLancamento.setText(revistaList.get(position).getDataLancamento());
 
 //        Picasso.get().load("http://cleooficial.com/wp-content/uploads/2018/02/capa-revista-marie-claire-julho-2016-cleo-pires-bancas.jpg").into(holder.capa);
-
-        Revista revista = revistaList.get(position);
-
-        ImageUtil.loadImage(revista.getImage(), holder.imageViewCover, holder.progressBar, R.drawable.logo);
-
-        holder.imageDownloadPdf.setOnClickListener(v -> {
-
-            Intent intent = new Intent(v.getContext(), PdfViewActivity.class);
-            intent.putExtra("URL", revista.getUrlPdfFree());
-            intent.putExtra("FILE", revista.getId() + ".pdf");
-            v.getContext().startActivity(intent);
-
-        });
-
+            holder.bind(revistaList.get(position));
 
     }
 
     @Override
     public int getItemCount() {
-        return revistaList.size();
+        return (revistaList != null && revistaList.size() > 0) ? revistaList.size() : 0;
     }
 
 
@@ -92,5 +85,30 @@ public class RecyclerViewLancamentosAdapter extends RecyclerView.Adapter<Recycle
             imageDownloadPdf = itemView.findViewById(R.id.img_download_pdf);
 
         }
+
+        public void bind(Revista revista){
+
+//        Revista revista = revistaList.get(position);
+
+            ImageUtil.loadImage(Constantes.URL_BASE_COVER + revista.getImage(), imageViewCover, progressBar, R.drawable.logo);
+
+            imageDownloadPdf.setOnClickListener(v -> {
+
+                Intent intent = new Intent(v.getContext(), PdfViewActivity.class);
+                intent.putExtra("URL", Constantes.URL_BASE_PDF);
+                intent.putExtra("PATH", revista.getUrlPdfFree());
+                intent.putExtra("FILE_NAME", revista.getId() + ".pdf");
+                v.getContext().startActivity(intent);
+
+            });
+        }
     }
+
+    public void setRevistaList(List<Revista> revistas){
+        this.revistaList = revistas;
+        notifyDataSetChanged();
+
+    }
+
+
 }

@@ -12,12 +12,4 @@
 
     <include layout="@layout/nav_compre_app"/>
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/navViewCompreAppId"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/menu_nav"/>
-
 </android.support.v4.widget.DrawerLayout>

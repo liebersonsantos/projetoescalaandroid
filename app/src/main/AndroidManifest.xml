@@ -3,36 +3,36 @@
     package="br.com.escala.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name="br.com.escala.app.CustomApplication"
+        android:name=".CustomApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="br.com.escala.app.view.SplashActivity">
+        <activity android:name=".view.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="br.com.escala.app.view.LoginActivity" />
-        <activity android:name="br.com.escala.app.view.CadastroActivity" />
-        <activity android:name="br.com.escala.app.view.ApresentacaoActivity" />
-        <activity android:name="br.com.escala.app.view.ExemploActivity" />
-        <activity android:name="br.com.escala.app.view.ApresentacaoRevistaActivity" />
-        <activity android:name="br.com.escala.app.view.LerEdicaoMesActivity" />
-        <activity android:name="br.com.escala.app.view.TelaEdicaoMesActivity" />
-        <activity android:name="br.com.escala.app.view.AssineJaActivity" />
-        <activity android:name="br.com.escala.app.view.CompreAppActivity" />
-        <activity android:name="br.com.escala.app.view.TelaSaudacaoActivity" />
-        <activity android:name="br.com.escala.app.view.CupomDescontoActivity" />
-        <activity android:name="br.com.escala.app.view.BaseActivity" />
+        <activity android:name=".view.LoginActivity" />
+        <activity android:name=".view.CadastroActivity" />
+        <activity android:name=".view.ApresentacaoActivity" />
+        <activity android:name=".view.ExemploActivity" />
+        <activity android:name=".view.ApresentacaoRevistaActivity" />
+        <activity android:name=".view.LerEdicaoMesActivity" />
+        <activity android:name=".view.TelaEdicaoMesActivity" />
+        <activity android:name=".view.AssineJaActivity" />
+        <activity android:name=".view.CompreAppActivity" />
+        <activity android:name=".view.TelaSaudacaoActivity" />
+        <activity android:name=".view.CupomDescontoActivity" />
+        <activity android:name=".view.BaseActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -54,7 +54,7 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name="br.com.escala.app.view.PdfViewActivity"/>
+        <activity android:name=".view.PdfViewActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -66,6 +66,8 @@
                 android:resource="@xml/filepaths" />
         </provider>
 
+        <activity android:name=".view.NoticacaoActivity" />
+        <activity android:name=".view.NotificacaoActivity"></activity>
     </application>
 
 </manifest>

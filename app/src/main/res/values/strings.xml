@@ -51,6 +51,7 @@
     <string name="facebook_app_id">1814075425325664</string>
     <string name="fb_login_protocol_scheme">fb1814075425325664</string>
     <string name="ainda_n_o_tem_cadastro">Ainda não tem Cadastro?</string>
-    <string name="navegue_gratis">NAVEGUE GRÁTIS</string>Copiar código
+    <string name="navegue_gratis">NAVEGUE GRÁTIS</string>
+    <string name="entrar_nav_free_"><u>Entrar</u></string>
 
 </resources>

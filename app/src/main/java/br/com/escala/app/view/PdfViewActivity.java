@@ -2,8 +2,10 @@ package br.com.escala.app.view;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -14,8 +16,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import br.com.escala.app.R;
@@ -24,6 +30,7 @@ import br.com.escala.app.model.Revista;
 import br.com.escala.app.network.RestClient;
 
 import com.github.barteksc.pdfviewer.PDFView;
+import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -51,12 +58,13 @@ public class PdfViewActivity extends BaseActivity {
     private CompositeDisposable disposable = new CompositeDisposable();
     private String fileName = "";
     private String url;
+    private AlertDialog.Builder builder;
+    private Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdf_view);
-
 
         url = getIntent().getStringExtra("URL");
         fileName = getIntent().getStringExtra("FILE_NAME");
@@ -98,6 +106,19 @@ public class PdfViewActivity extends BaseActivity {
                             .swipeHorizontal(true)
                             .enableDoubletap(true)
                             .defaultPage(0)
+                            .pages(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+                            .onPageChange(new OnPageChangeListener() {
+                                @Override
+                                public void onPageChanged(int page, int pageCount) {
+
+                                    Log.i("TAG onPageChanged", "page " + page + "pageCount " + pageCount);
+
+                                    if (page == 10){
+
+                                        goNotify();
+                                    }
+                                }
+                            })
                             .enableAnnotationRendering(false) // render annotations (such as comments, colors or forms)
                             .password(null)
                             .scrollHandle(null)
@@ -110,6 +131,54 @@ public class PdfViewActivity extends BaseActivity {
                     finishActivityPdf(url);
                 })
         );
+    }
+
+    private void goNotify() {
+
+        View view = LayoutInflater.from(PdfViewActivity.this).inflate(R.layout.activity_notificacao, null);
+
+        ImageView imgFecharView = view.findViewById(R.id.btn_fechar_notificacao_id);
+        Button btnAssineJa = view.findViewById(R.id.btn_assine_ja_id);
+        Button btnCompreApp = view.findViewById(R.id.btn_compre_app_id);
+        TextView txtVolteLogin = view.findViewById(R.id.btn_tela_login_id);
+
+        builder = new AlertDialog.Builder(PdfViewActivity.this);
+
+        imgFecharView.setOnClickListener(v -> {
+
+            Intent intent = new Intent(v.getContext(), LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+        btnAssineJa.setOnClickListener(v -> {
+
+            Intent intent = new Intent(v.getContext(), AssineJaActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+        btnCompreApp.setOnClickListener(v -> {
+
+            Intent intent = new Intent(v.getContext(), AssineJaActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+        txtVolteLogin.setOnClickListener(v -> {
+
+            Intent intent = new Intent(v.getContext(), LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+        builder.setView(view)
+                .setCancelable(false);
+
+        dialog = builder.create();
+        dialog.show();
+
+
     }
 
     private Single<File> saveFile(ResponseBody responseBody){
@@ -195,4 +264,50 @@ public class PdfViewActivity extends BaseActivity {
         }
         super.onDestroy();
     }
+
+
+
+
 }
+
+//    private void getPdf(String url) {
+//
+//        disposable.add(RestClient.getInstancePDF(url).downloadFile(path)
+//                .flatMap(this::saveFile)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .doOnSubscribe(disposable1 -> {
+//                    // colocar o loading para a tela
+//                    progressBar.setVisibility(View.VISIBLE);
+//                })
+//                .doAfterTerminate(() -> {
+//                    // tirar o loading pra ma tela
+//                    progressBar.setVisibility(View.GONE);
+//                })
+//                .doOnError(throwable -> {
+//                    Log.i("TAG", "onCreate: " + throwable.getMessage());
+//                    finishActivityPdf(url);
+//                })
+//                .subscribe(file -> {
+//
+//                    finishActivityPdf(url);
+//
+//                    pdfView.fromFile(file)
+//                            .enableSwipe(true) // allows to block changing pages using swipe
+//                            .swipeHorizontal(true)
+//                            .enableDoubletap(true)
+//                            .defaultPage(0)
+//                            .pages(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+//                            .enableAnnotationRendering(false) // render annotations (such as comments, colors or forms)
+//                            .password(null)
+//                            .scrollHandle(null)
+//                            .enableAntialiasing(true) // improve rendering a little bit on low-res screens
+//                            .load();
+//
+//                }, throwable -> {
+//                    Log.i("TAG", "throwable: " + throwable.getMessage());
+//                    // mostrar a mensagem pro usuario, de error
+//                    finishActivityPdf(url);
+//                })
+//        );
+//    }

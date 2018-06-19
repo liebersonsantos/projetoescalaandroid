@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/img_detalhe_revista"
+        android:layout_width="170dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="6dp"
+        android:layout_marginEnd="198dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="198dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="2dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_detalhe_revista"
+        app:layout_constraintEnd_toEndOf="@+id/img_detalhe_revista"
+        app:layout_constraintStart_toStartOf="@+id/img_detalhe_revista"
+        app:layout_constraintTop_toTopOf="@+id/img_detalhe_revista" />
+
+    <TextView
+        android:id="@+id/txt_detalhe_revista"
+        android:layout_width="182dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="2dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/sos_verao"
+        android:textColor="#555555"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/img_detalhe_revista"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

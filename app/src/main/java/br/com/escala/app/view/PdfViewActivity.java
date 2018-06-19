@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
@@ -108,6 +109,7 @@ public class PdfViewActivity extends BaseActivity {
                             .defaultPage(0)
                             .pages(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
                             .onPageChange(new OnPageChangeListener() {
+
                                 @Override
                                 public void onPageChanged(int page, int pageCount) {
 
@@ -133,6 +135,7 @@ public class PdfViewActivity extends BaseActivity {
         );
     }
 
+
     private void goNotify() {
 
         View view = LayoutInflater.from(PdfViewActivity.this).inflate(R.layout.activity_notificacao, null);
@@ -155,29 +158,31 @@ public class PdfViewActivity extends BaseActivity {
 
             Intent intent = new Intent(v.getContext(), AssineJaActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            dialog.dismiss();
             startActivity(intent);
         });
 
         btnCompreApp.setOnClickListener(v -> {
 
-            Intent intent = new Intent(v.getContext(), AssineJaActivity.class);
+            Intent intent = new Intent(v.getContext(), CompreAppActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            dialog.dismiss();
             startActivity(intent);
         });
 
         txtVolteLogin.setOnClickListener(v -> {
 
+            dialog.dismiss();
+
             Intent intent = new Intent(v.getContext(), LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            dialog.dismiss();
             startActivity(intent);
         });
 
-        builder.setView(view)
-                .setCancelable(false);
-
+        builder.setView(view).setCancelable(false);
         dialog = builder.create();
         dialog.show();
-
 
     }
 
@@ -233,12 +238,13 @@ public class PdfViewActivity extends BaseActivity {
             builder.setNegativeButton("Não", (dialog, which) -> dialog.dismiss());
             builder.setPositiveButton("Sim", (dialog, which) -> {
 
-                dialog.dismiss();
+//                dialog.dismiss();
 
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_WRITE_PERMISSIONS);
             });
             builder.create();
             builder.show();
+
         } else {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_WRITE_PERMISSIONS);
         }
@@ -262,6 +268,7 @@ public class PdfViewActivity extends BaseActivity {
         if (file.exists()){
             file.delete();
         }
+
         super.onDestroy();
     }
 

@@ -1,30 +1,94 @@
 package br.com.escala.app.view;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import br.com.escala.app.R;
+import br.com.escala.app.helper.Constantes;
+import br.com.escala.app.helper.ImageUtil;
+import br.com.escala.app.model.Revista;
 
 public class ApresentacaoRevistaActivity extends BaseActivity {
+
+    private int id;
+    private String logo;
+    private String dataLancamento;
+    private String imageCover;
+    private String descricao;
+    private String pdfFree;
+    private String contentOnLine;
+    private String path;
+    private String fileName = "";
+    private String url;
+
+    private ImageView imgLogoTipo, imgCover;
+    private TextView txtLancamento;
+    private Button btnMonthEdition, btnLastEdition, btnContentOnLine;
+    private Revista revista;
+    private ProgressBar progressBar, progressBarT;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContainerView(R.layout.activity_apresentacao);
+        setContainerView(R.layout.activity_apresentacao_revista);
 
+        Bundle extra = getIntent().getExtras();
 
+        if( extra != null ){
+            logo = getIntent().getStringExtra("LOGOTIPO");
+            dataLancamento = getIntent().getStringExtra("LANCAMENTO");
+            imageCover = getIntent().getStringExtra("COVER");
+            descricao = getIntent().getStringExtra("DESCRICAO");
+            pdfFree = getIntent().getStringExtra("PDF_FREE");
+            contentOnLine = getIntent().getStringExtra("URL_ONLINE");
+            url = getIntent().getStringExtra("URL");
+            fileName = getIntent().getStringExtra("FILE_NAME");
+            path = getIntent().getStringExtra("PATH");
+        }
 
+        revista = new Revista();
 
+        imgLogoTipo = findViewById(R.id.img_logo_toolbar);
+        imgCover = findViewById(R.id.imagem_detalhe_Id);
+        txtLancamento = findViewById(R.id.txt_edition_month);
+        btnMonthEdition = findViewById(R.id.btn_edicao_mes_id);
+        btnLastEdition = findViewById(R.id.btn_edicao_anterior_id);
+        btnContentOnLine = findViewById(R.id.btn_conteudo_on_id);
+        progressBar = findViewById(R.id.progress_bar);
 
+        ImageUtil.loadImage(Constantes.URL_BASE_COVER + imageCover, imgCover, progressBar, R.drawable.logo);
+        txtLancamento.setText(dataLancamento);
 
+        btnContentOnLine.setOnClickListener(v -> {
+            Intent intent = new Intent(this, WebActivity.class);
+            intent.putExtra("URL_ONLINE", contentOnLine);
+            startActivity(intent);
 
+        });
 
+        btnMonthEdition.setOnClickListener(v -> {
+            Intent intent = new Intent(this, LerEdicaoMesActivity.class);
+            intent.putExtra("LOGOTIPO", logo);
+            intent.putExtra("LANCAMENTO", dataLancamento);
+            intent.putExtra("DESCRICAO", descricao);
+            intent.putExtra("COVER", imageCover);
+            intent.putExtra("PDF_FREE", pdfFree);
+            intent.putExtra("URL_ONLINE", contentOnLine);
+            intent.putExtra("URL", url);
+            intent.putExtra("FILE_NAME", fileName);
+            startActivity(intent);
 
-
-
+        });
 
     }
 }

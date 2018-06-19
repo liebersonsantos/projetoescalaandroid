@@ -41,7 +41,6 @@ public class AdapterLogin extends RecyclerView.Adapter<AdapterLogin.LancamentosV
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_login, parent, false);
 
-        System.out.println("viewHolder");
 
         return new AdapterLogin.LancamentosViewHolder(view);
     }
@@ -58,8 +57,6 @@ public class AdapterLogin extends RecyclerView.Adapter<AdapterLogin.LancamentosV
 //        return revistaList.size();
         return (revistaList != null && revistaList.size() > 0) ? revistaList.size() : 0;
     }
-
-
 
     public static class LancamentosViewHolder extends RecyclerView.ViewHolder{
 

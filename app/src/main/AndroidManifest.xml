@@ -67,7 +67,8 @@
         </provider>
 
         <activity android:name=".view.NoticacaoActivity" />
-        <activity android:name=".view.NotificacaoActivity"></activity>
+        <activity android:name=".view.NotificacaoActivity" />
+        <activity android:name=".view.WebActivity"></activity>
     </application>
 
 </manifest>

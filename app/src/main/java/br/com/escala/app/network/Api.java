@@ -21,18 +21,16 @@ import retrofit2.http.Streaming;
 
 public interface Api {
 
-    @POST("wsCreateUser")
+    @POST("escala/controller_webservice/wsCreateUser")
 //    Call<Usuario> createUser(@Body Usuario usuario);
-    Single<retrofit2.Response<Void>> createUser(@Body Usuario usuario);    //Single => Dessa forma trabalhando reativamente-----será apenas um obj
-
+    Single<retrofit2.Response<Void>> createUser(@Body Usuario usuario);    //Single => D
     @GET("wsForgotPassword")
     Single<Response> forgotPassword(String email);
 
 //    @GET("wsLogin")
 //    Call<ResponseBody> login(@Body String email, String senha);
-    @POST("wsLogin")
+    @POST("escala/controller_webservice/wsLogin")
     Single<LoginToken> login(@Body Login login);
-
     @PUT("wsUpdateUser")
     Single<Response> updateUser(String token, @Body Usuario usuario); //sempre que eu passar um objeto, eu uso @body para pegar o obj e transforma em um json
 
@@ -41,7 +39,7 @@ public interface Api {
     @GET("escala/upload/revistas/{path}")
     Single<ResponseBody> downloadFile(@Path(value = "path", encoded = true) String path);
 
-    @GET("wsMagazines")
+    @GET("escala/controller_webservice/wsMagazines")
     Call<MagazineRespose> magazines();
 
 }

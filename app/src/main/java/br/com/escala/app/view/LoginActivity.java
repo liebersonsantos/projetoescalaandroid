@@ -1,5 +1,6 @@
 package br.com.escala.app.view;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
@@ -79,6 +80,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private RecyclerView recyclerView;
     private List<Revista> revistas;
     private AdapterLogin adapterLogin;
+    private Dialog dialog;
 
     private android.support.v7.widget.Toolbar toolbar;
 

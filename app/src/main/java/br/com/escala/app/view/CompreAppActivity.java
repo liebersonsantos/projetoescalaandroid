@@ -36,6 +36,13 @@ public class CompreAppActivity extends AppCompatActivity {
 
 
         toolbar = findViewById(R.id.toolbarId);
-        toolbar.inflateMenu(R.menu.menu_toolbar);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, AssineJaActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
     }
 }

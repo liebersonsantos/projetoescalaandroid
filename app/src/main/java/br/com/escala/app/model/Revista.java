@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Revista implements Parcelable{
 
     @SerializedName("magazine_id")
@@ -25,11 +27,20 @@ public class Revista implements Parcelable{
     @SerializedName("magazine_cover")
     private String image;
 
+    @SerializedName("magazine_logo")
+    private String imageLogo;
+
     @SerializedName("magazine_pdf_free")
     private String urlPdfFree;
 
     @SerializedName("pdffull")
     private String urlPdfFull;
+
+    @SerializedName("magazine_content_online")
+    private String contentOnLine;
+
+    @SerializedName("magazine_contents_related")
+    private List<MagazineContentsRelated> magazineContentsRelated;
 
     public Revista() {
     }
@@ -41,8 +52,11 @@ public class Revista implements Parcelable{
         nomeRevista = in.readString();
         dataLancamento = in.readString();
         image = in.readString();
+        imageLogo = in.readString();
         urlPdfFree = in.readString();
         urlPdfFull = in.readString();
+        contentOnLine = in.readString();
+        magazineContentsRelated = in.createTypedArrayList(MagazineContentsRelated.CREATOR);
     }
 
     public static final Creator<Revista> CREATOR = new Creator<Revista>() {
@@ -70,8 +84,11 @@ public class Revista implements Parcelable{
         dest.writeString(nomeRevista);
         dest.writeString(dataLancamento);
         dest.writeString(image);
+        dest.writeString(imageLogo);
         dest.writeString(urlPdfFree);
         dest.writeString(urlPdfFull);
+        dest.writeString(contentOnLine);
+        dest.writeTypedList(magazineContentsRelated);
     }
 
     public long getId() {
@@ -122,6 +139,14 @@ public class Revista implements Parcelable{
         this.image = image;
     }
 
+    public String getImageLogo() {
+        return imageLogo;
+    }
+
+    public void setImageLogo(String imageLogo) {
+        this.imageLogo = imageLogo;
+    }
+
     public String getUrlPdfFree() {
         return urlPdfFree;
     }
@@ -137,6 +162,126 @@ public class Revista implements Parcelable{
     public void setUrlPdfFull(String urlPdfFull) {
         this.urlPdfFull = urlPdfFull;
     }
+
+    public String getContentOnLine() {
+        return contentOnLine;
+    }
+
+    public void setContentOnLine(String contentOnLine) {
+        this.contentOnLine = contentOnLine;
+    }
+
+    public List<MagazineContentsRelated> getMagazineContentsRelated() {
+        return magazineContentsRelated;
+    }
+
+    public void setMagazineContentsRelated(List<MagazineContentsRelated> magazineContentsRelated) {
+        this.magazineContentsRelated = magazineContentsRelated;
+    }
+
+    //    protected Revista(Parcel in) {
+//        id = in.readLong();
+//        categoria_id = in.readString();
+//        descricao = in.readString();
+//        nomeRevista = in.readString();
+//        dataLancamento = in.readString();
+//        image = in.readString();
+//        urlPdfFree = in.readString();
+//        urlPdfFull = in.readString();
+//    }
+//
+//    public static final Creator<Revista> CREATOR = new Creator<Revista>() {
+//        @Override
+//        public Revista createFromParcel(Parcel in) {
+//            return new Revista(in);
+//        }
+//
+//        @Override
+//        public Revista[] newArray(int size) {
+//            return new Revista[size];
+//        }
+//    };
+//
+//    @Override
+//    public int describeContents() {
+//        return 0;
+//    }
+//
+//    @Override
+//    public void writeToParcel(Parcel dest, int flags) {
+//        dest.writeLong(id);
+//        dest.writeString(categoria_id);
+//        dest.writeString(descricao);
+//        dest.writeString(nomeRevista);
+//        dest.writeString(dataLancamento);
+//        dest.writeString(image);
+//        dest.writeString(urlPdfFree);
+//        dest.writeString(urlPdfFull);
+//    }
+//
+//    public long getId() {
+//        return id;
+//    }
+//
+//    public void setId(long id) {
+//        this.id = id;
+//    }
+//
+//    public String getCategoria_id() {
+//        return categoria_id;
+//    }
+//
+//    public void setCategoria_id(String categoria_id) {
+//        this.categoria_id = categoria_id;
+//    }
+//
+//    public String getDescricao() {
+//        return descricao;
+//    }
+//
+//    public void setDescricao(String descricao) {
+//        this.descricao = descricao;
+//    }
+//
+//    public String getNomeRevista() {
+//        return nomeRevista;
+//    }
+//
+//    public void setNomeRevista(String nomeRevista) {
+//        this.nomeRevista = nomeRevista;
+//    }
+//
+//    public String getDataLancamento() {
+//        return dataLancamento;
+//    }
+//
+//    public void setDataLancamento(String dataLancamento) {
+//        this.dataLancamento = dataLancamento;
+//    }
+//
+//    public String getImage() {
+//        return image;
+//    }
+//
+//    public void setImage(String image) {
+//        this.image = image;
+//    }
+//
+//    public String getUrlPdfFree() {
+//        return urlPdfFree;
+//    }
+//
+//    public void setUrlPdfFree(String urlPdfFree) {
+//        this.urlPdfFree = urlPdfFree;
+//    }
+//
+//    public String getUrlPdfFull() {
+//        return urlPdfFull;
+//    }
+//
+//    public void setUrlPdfFull(String urlPdfFull) {
+//        this.urlPdfFull = urlPdfFull;
+//    }
 }
 
 //    protected Revista(Parcel in) {

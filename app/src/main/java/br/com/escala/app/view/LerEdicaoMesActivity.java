@@ -10,126 +10,71 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import br.com.escala.app.R;
+import br.com.escala.app.helper.Constantes;
+import br.com.escala.app.helper.ImageUtil;
 
-public class LerEdicaoMesActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class LerEdicaoMesActivity extends BaseActivity {
 
-    private android.support.v7.widget.Toolbar toolbar;
-    private android.support.v4.widget.DrawerLayout drawerLayout;
-    private NavigationView navigationView;
+    private int id;
+    private String logo;
+    private String dataLancamento;
+    private String descricao;
+    private String imageCover;
+    private String pdfFree;
+    private String contentOnLine;
+    private String path;
+    private String fileName = "";
+    private String url;
+
     private Button botaoLerEdicao;
+    private ImageView imgCover;
+    private TextView txtDescricao;
+    private ProgressBar progressBar;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ler_edicao_mes);
+        setContainerView(R.layout.activity_ler_edicao_mes);
 
+        Bundle extra = getIntent().getExtras();
 
+        if( extra != null ){
+            logo = getIntent().getStringExtra("LOGOTIPO");
+            dataLancamento = getIntent().getStringExtra("LANCAMENTO");
+            descricao = getIntent().getStringExtra("DESCRICAO");
+            imageCover = getIntent().getStringExtra("COVER");
+            pdfFree = getIntent().getStringExtra("PDF_FREE");
+            contentOnLine = getIntent().getStringExtra("URL_ONLINE");
+            url = getIntent().getStringExtra("URL");
+            fileName = getIntent().getStringExtra("FILE_NAME");
+            path = getIntent().getStringExtra("PATH");
+        }
 
-        toolbar = findViewById(R.id.toolbar_revista_id);
-        toolbar.inflateMenu(R.menu.menu_toolbar);
+        botaoLerEdicao =  findViewById(R.id.btn_ler_edicao_mes_detalhe_id);
+        imgCover = findViewById(R.id.image_edicao_detalhe_id);
+        txtDescricao = findViewById(R.id.txt_descricao);
+        progressBar = findViewById(R.id.progress_bar);
 
-        drawerLayout = findViewById(R.id.drawerLayoutId);
+        botaoLerEdicao.setOnClickListener(v -> {
 
-        android.support.v7.app.ActionBarDrawerToggle toggle = new android.support.v7.app.ActionBarDrawerToggle(this
-                , drawerLayout
-                , toolbar
-                , R.string.open_drawer
-                , R.string.close_drawer);
-        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.colorPrimary));
-        drawerLayout.addDrawerListener(toggle);
-
-        toggle.syncState();
-
-        navigationView = findViewById(R.id.navViewEdicaoMesId);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        botaoLerEdicao = findViewById(R.id.btn_ler_edicao_mes_detalhe_id);
-
-        botaoLerEdicao.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(LerEdicaoMesActivity.this, TelaEdicaoMesActivity.class);
-                startActivity(intent);
-                finish();
-
-            }
+            Intent intent = new Intent(this, PdfViewActivity.class);
+            intent.putExtra("URL", Constantes.URL_BASE_PDF);
+            intent.putExtra("PATH", pdfFree);
+            intent.putExtra("FILE_NAME", fileName);
+            startActivity(intent);
         });
 
-    }
+        ImageUtil.loadImage(Constantes.URL_BASE_COVER + imageCover, imgCover, progressBar, R.drawable.logo);
+        txtDescricao.setText(descricao);
 
-     //esse metodo faz com que, quando o botao de retorno do aparelho for pressionado, o drawer feche ao inves de sair do app
-    @Override
-    public void onBackPressed() {
-
-        if (drawerLayout.isDrawerOpen(android.support.v4.view.GravityCompat.START)) {
-
-            drawerLayout.closeDrawer(GravityCompat.START);
-
-        } else {
-
-            super.onBackPressed();
-        }
-    }
-
-     @Override
-    public boolean onNavigationItemSelected(@android.support.annotation.NonNull MenuItem item) {
-
-        switch (item.getItemId()) {
-
-            case R.id.menu_edicao_atual: {
-                Toast.makeText(this, "Edição Atual", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.menu_edicoes_anteriores: {
-                Toast.makeText(this, "Edições Anteriores", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.menu_clube_assinante: {
-                Intent intent = new Intent(this, CupomDescontoActivity.class);
-                startActivity(intent);
-                //Toast.makeText(this, "Clube do Assinante", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.menu_atendimento: {
-                Toast.makeText(this, "Atendimento ao Leitor", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.menu_item1: {
-                Toast.makeText(this, "Item 1", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.menu_item2: {
-                Toast.makeText(this, "Item 2", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.menu_item3: {
-                Toast.makeText(this, "Item 3", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.menu_item4: {
-                Toast.makeText(this, "Item 4", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.menu_logoff: {
-                Toast.makeText(this, "Item 5", Toast.LENGTH_SHORT).show();
-                break;
-            }
-
-        }
-
-        drawerLayout.closeDrawer(GravityCompat.START);
-
-        return true;
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
 

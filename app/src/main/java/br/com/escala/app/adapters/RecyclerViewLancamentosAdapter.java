@@ -15,6 +15,7 @@ import br.com.escala.app.R;
 import br.com.escala.app.helper.Constantes;
 import br.com.escala.app.helper.ImageUtil;
 import br.com.escala.app.model.Revista;
+import br.com.escala.app.view.ApresentacaoRevistaActivity;
 import br.com.escala.app.view.PdfViewActivity;
 import br.com.escala.app.view.fragment.LancamentosFragment;
 
@@ -49,11 +50,7 @@ public class RecyclerViewLancamentosAdapter extends RecyclerView.Adapter<Recycle
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewLancamentosAdapter.LancamentosViewHolder holder, int position) {
 
-//        holder.nomeRevista.setText(revistaList.get(position).getNomeRevista());
-//        holder.dataLancamento.setText(revistaList.get(position).getDataLancamento());
-
-//        Picasso.get().load("http://cleooficial.com/wp-content/uploads/2018/02/capa-revista-marie-claire-julho-2016-cleo-pires-bancas.jpg").into(holder.capa);
-            holder.bind(revistaList.get(position));
+        holder.bind(revistaList.get(position));
 
     }
 
@@ -76,9 +73,9 @@ public class RecyclerViewLancamentosAdapter extends RecyclerView.Adapter<Recycle
             super(itemView);
 
             view = itemView;
-//
-//            nomeRevista = itemView.findViewById(R.id.txt_nome_revista);
-//            dataLancamento = itemView.findViewById(R.id.txt_mes_lancamento);
+
+            nomeRevista = itemView.findViewById(R.id.txt_name_magazine);
+            dataLancamento = itemView.findViewById(R.id.txt_edition_month);
             imageViewCover = itemView.findViewById(R.id.img_revista_id);
             progressBar = itemView.findViewById(R.id.progress_bar);
             btnNavigationFree = itemView.findViewById(R.id.btn_nav_free_id);
@@ -91,6 +88,24 @@ public class RecyclerViewLancamentosAdapter extends RecyclerView.Adapter<Recycle
 //        Revista revista = revistaList.get(position);
 
             ImageUtil.loadImage(Constantes.URL_BASE_COVER + revista.getImage(), imageViewCover, progressBar, R.drawable.logo);
+            nomeRevista.setText(revista.getNomeRevista());
+            dataLancamento.setText(revista.getDataLancamento());
+
+            imageViewCover.setOnClickListener(v -> {
+
+                Intent intent = new Intent(v.getContext(), ApresentacaoRevistaActivity.class);
+                intent.putExtra("LOGOTIPO", revista.getImageLogo());
+                intent.putExtra("LANCAMENTO", revista.getDataLancamento());
+                intent.putExtra("COVER", revista.getImage());
+                intent.putExtra("PDF_FREE", revista.getUrlPdfFree());
+                intent.putExtra("URL_ONLINE", revista.getContentOnLine());
+                intent.putExtra("DESCRICAO", revista.getDescricao());
+                intent.putExtra("URL", Constantes.URL_BASE_PDF);
+                intent.putExtra("FILE_NAME", revista.getId() + "pdf");
+                v.getContext().startActivity(intent);
+
+
+            });
 
             imageDownloadPdf.setOnClickListener(v -> {
 

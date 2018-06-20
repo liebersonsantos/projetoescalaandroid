@@ -1,12 +1,10 @@
 package br.com.escala.app.adapters;
 
-import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -18,27 +16,26 @@ import br.com.escala.app.R;
 import br.com.escala.app.helper.Constantes;
 import br.com.escala.app.helper.ImageUtil;
 import br.com.escala.app.model.MagazineContentsRelated;
-import br.com.escala.app.model.Revista;
 
-public class AdapterDetail extends RecyclerView.Adapter<AdapterDetail.DetailViewHolder>{
+public class AdapterRelatedMagazine extends RecyclerView.Adapter<AdapterRelatedMagazine.DetailViewHolder>{
 
     private List<MagazineContentsRelated> revistaList;
 
-    public AdapterDetail() {
+    public AdapterRelatedMagazine() {
         revistaList = new ArrayList<>();
     }
 
-    public AdapterDetail(List<MagazineContentsRelated> revistaList) {
+    public AdapterRelatedMagazine(List<MagazineContentsRelated> revistaList) {
         this.revistaList = revistaList;
     }
 
     @NonNull
     @Override
-    public AdapterDetail.DetailViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdapterRelatedMagazine.DetailViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
        View view = LayoutInflater.from(parent.getContext())
                .inflate(R.layout.item_edicao_mes, parent, false);
 
-        return new AdapterDetail.DetailViewHolder(view);
+        return new AdapterRelatedMagazine.DetailViewHolder(view);
     }
 
     @Override

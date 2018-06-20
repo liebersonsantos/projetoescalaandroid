@@ -5,29 +5,21 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
 import br.com.escala.app.R;
-import br.com.escala.app.adapters.AdapterDetail;
-import br.com.escala.app.adapters.AdapterLogin;
+import br.com.escala.app.adapters.AdapterRelatedMagazine;
 import br.com.escala.app.helper.Constantes;
 import br.com.escala.app.helper.ImageUtil;
 import br.com.escala.app.model.MagazineContentsRelated;
-import br.com.escala.app.model.MagazineRespose;
 import br.com.escala.app.model.Revista;
-import br.com.escala.app.network.RestClient;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class LerEdicaoMesActivity extends BaseActivity {
 
@@ -48,7 +40,7 @@ public class LerEdicaoMesActivity extends BaseActivity {
     private ProgressBar progressBar;
 
     private RecyclerView recyclerView;
-    private AdapterDetail adapter;
+    private AdapterRelatedMagazine adapter;
     private List<Revista> revistaList;
     private Revista revista;
 
@@ -140,7 +132,7 @@ public class LerEdicaoMesActivity extends BaseActivity {
 
         List<MagazineContentsRelated> magazineContentsRelateds = ApresentacaoRevistaActivity.revistaIntent.getMagazineContentsRelated();
 
-        adapter = new AdapterDetail();
+        adapter = new AdapterRelatedMagazine();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());

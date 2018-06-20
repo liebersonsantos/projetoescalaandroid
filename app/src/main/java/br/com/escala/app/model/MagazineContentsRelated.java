@@ -40,4 +40,22 @@ public class MagazineContentsRelated implements Parcelable{
         dest.writeString(magazineContentRelatedDesc);
         dest.writeString(magazineContentRelatedImg);
     }
+
+    public String getMagazineContentRelatedDesc() {
+        return magazineContentRelatedDesc;
+    }
+
+    public void setMagazineContentRelatedDesc(String magazineContentRelatedDesc) {
+        this.magazineContentRelatedDesc = magazineContentRelatedDesc;
+    }
+
+    public String getMagazineContentRelatedImg() {
+        return magazineContentRelatedImg;
+    }
+
+    public void setMagazineContentRelatedImg(String magazineContentRelatedImg) {
+        this.magazineContentRelatedImg = magazineContentRelatedImg;
+    }
+
+
 }

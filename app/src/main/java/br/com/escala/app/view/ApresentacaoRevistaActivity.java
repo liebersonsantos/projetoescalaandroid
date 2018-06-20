@@ -28,6 +28,7 @@ public class ApresentacaoRevistaActivity extends BaseActivity {
     private String path;
     private String fileName = "";
     private String url;
+    public static Revista revistaIntent;
 
     private ImageView imgLogoTipo, imgCover;
     private TextView txtLancamento;
@@ -42,18 +43,13 @@ public class ApresentacaoRevistaActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContainerView(R.layout.activity_apresentacao_revista);
 
+        revistaIntent = new Revista();
+
         Bundle extra = getIntent().getExtras();
 
         if( extra != null ){
-            logo = getIntent().getStringExtra("LOGOTIPO");
-            dataLancamento = getIntent().getStringExtra("LANCAMENTO");
-            imageCover = getIntent().getStringExtra("COVER");
-            descricao = getIntent().getStringExtra("DESCRICAO");
-            pdfFree = getIntent().getStringExtra("PDF_FREE");
-            contentOnLine = getIntent().getStringExtra("URL_ONLINE");
-            url = getIntent().getStringExtra("URL");
-            fileName = getIntent().getStringExtra("FILE_NAME");
-            path = getIntent().getStringExtra("PATH");
+
+            revistaIntent = getIntent().getExtras().getParcelable("REVISTA");
         }
 
         revista = new Revista();
@@ -66,8 +62,8 @@ public class ApresentacaoRevistaActivity extends BaseActivity {
         btnContentOnLine = findViewById(R.id.btn_conteudo_on_id);
         progressBar = findViewById(R.id.progress_bar);
 
-        ImageUtil.loadImage(Constantes.URL_BASE_COVER + imageCover, imgCover, progressBar, R.drawable.logo);
-        txtLancamento.setText(dataLancamento);
+        ImageUtil.loadImage(Constantes.URL_BASE_COVER + revistaIntent.getImage(), imgCover, progressBar, R.drawable.logo);
+        txtLancamento.setText(revistaIntent.getDataLancamento());
 
         btnContentOnLine.setOnClickListener(v -> {
             Intent intent = new Intent(this, WebActivity.class);

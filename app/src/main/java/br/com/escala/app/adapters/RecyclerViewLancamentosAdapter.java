@@ -94,14 +94,7 @@ public class RecyclerViewLancamentosAdapter extends RecyclerView.Adapter<Recycle
             imageViewCover.setOnClickListener(v -> {
 
                 Intent intent = new Intent(v.getContext(), ApresentacaoRevistaActivity.class);
-                intent.putExtra("LOGOTIPO", revista.getImageLogo());
-                intent.putExtra("LANCAMENTO", revista.getDataLancamento());
-                intent.putExtra("COVER", revista.getImage());
-                intent.putExtra("PDF_FREE", revista.getUrlPdfFree());
-                intent.putExtra("URL_ONLINE", revista.getContentOnLine());
-                intent.putExtra("DESCRICAO", revista.getDescricao());
-                intent.putExtra("URL", Constantes.URL_BASE_PDF);
-                intent.putExtra("FILE_NAME", revista.getId() + "pdf");
+                intent.putExtra("REVISTA", revista);
                 v.getContext().startActivity(intent);
 
 
@@ -124,6 +117,5 @@ public class RecyclerViewLancamentosAdapter extends RecyclerView.Adapter<Recycle
         notifyDataSetChanged();
 
     }
-
 
 }

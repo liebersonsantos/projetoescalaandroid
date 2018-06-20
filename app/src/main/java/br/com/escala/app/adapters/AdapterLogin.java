@@ -49,7 +49,6 @@ public class AdapterLogin extends RecyclerView.Adapter<AdapterLogin.LancamentosV
     public void onBindViewHolder(@NonNull AdapterLogin.LancamentosViewHolder holder, int position) { //
 
                 holder.bind(revistaList.get(position));
-
     }
 
     @Override

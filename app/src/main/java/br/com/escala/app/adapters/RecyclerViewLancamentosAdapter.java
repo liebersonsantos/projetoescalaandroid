@@ -16,6 +16,8 @@ import br.com.escala.app.helper.Constantes;
 import br.com.escala.app.helper.ImageUtil;
 import br.com.escala.app.model.Revista;
 import br.com.escala.app.view.ApresentacaoRevistaActivity;
+import br.com.escala.app.view.EdicaoAtualActivity;
+import br.com.escala.app.view.LerEdicaoMesActivity;
 import br.com.escala.app.view.PdfViewActivity;
 import br.com.escala.app.view.fragment.LancamentosFragment;
 
@@ -93,7 +95,7 @@ public class RecyclerViewLancamentosAdapter extends RecyclerView.Adapter<Recycle
 
             imageViewCover.setOnClickListener(v -> {
 
-                Intent intent = new Intent(v.getContext(), ApresentacaoRevistaActivity.class);
+                Intent intent = new Intent(v.getContext(), LerEdicaoMesActivity.class);
                 intent.putExtra("REVISTA", revista);
                 v.getContext().startActivity(intent);
 

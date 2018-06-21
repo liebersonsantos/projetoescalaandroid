@@ -53,5 +53,13 @@
     <string name="ainda_n_o_tem_cadastro">Ainda não tem Cadastro?</string>
     <string name="navegue_gratis">NAVEGUE GRÁTIS</string>
     <string name="entrar_nav_free_"><u>Entrar</u></string>
+    <string name="como_podemos_te_ajudar">Como podemos te ajudar?</string>
+    <string name="texto_descricao_contato">Mas antes, para que possamos te identificar e solucionar sua dúvida ou problema com maior facilidade, nos diga:</string>
+    <string name="assinante">É assinante</string>
+    <string name="n_o_assinante_ainda">Não é assinante ainda</string>
+    <string name="qual_o_seu_nome">Qual o seu Nome?</string>
+    <string name="qual_o_seu_e_mail">Qual o seu e-mail?</string>
+    <string name="diga_sua_duvida">Agora sim nos diga, qual sua dúvida ou problema?</string>
+    <string name="digite_aqui_a_sua_d_vida">Digite aqui a sua dúvida</string>
 
 </resources>

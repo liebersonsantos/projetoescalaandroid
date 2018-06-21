@@ -18,6 +18,7 @@ import br.com.escala.app.R;
 import br.com.escala.app.helper.Constantes;
 import br.com.escala.app.helper.ImageUtil;
 import br.com.escala.app.model.Revista;
+import br.com.escala.app.view.LerEdicaoMesActivity;
 import br.com.escala.app.view.PdfViewActivity;
 
 import java.util.ArrayList;
@@ -85,10 +86,11 @@ public class AdapterLogin extends RecyclerView.Adapter<AdapterLogin.LancamentosV
 
             btnNavigationFree.setOnClickListener(v -> {
 
-                Intent intent = new Intent(v.getContext(), PdfViewActivity.class);
-                intent.putExtra("URL", Constantes.URL_BASE_PDF);
-                intent.putExtra("PATH", revista.getUrlPdfFree());
-                intent.putExtra("FILE_NAME", revista.getId() + ".pdf");
+                Intent intent = new Intent(v.getContext(), LerEdicaoMesActivity.class);
+                intent.putExtra("REVISTA", revista);
+//                intent.putExtra("URL", Constantes.URL_BASE_PDF);
+//                intent.putExtra("PATH", revista.getUrlPdfFree());
+//                intent.putExtra("FILE_NAME", revista.getId() + ".pdf");
                 v.getContext().startActivity(intent);
 
             });

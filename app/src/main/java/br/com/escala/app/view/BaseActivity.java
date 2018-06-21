@@ -121,7 +121,8 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
 
             case R.id.menu_edicao_atual: {
-                Toast.makeText(this, "Edição Atual", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, EdicaoAtualActivity.class);
+                startActivity(intent);
                 break;
             }
             case R.id.menu_edicoes_anteriores: {
@@ -137,7 +138,8 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
                 break;
             }
             case R.id.menu_atendimento: {
-                Toast.makeText(this, "Atendimento ao Leitor", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, AtendimentoLeitorActivity.class);
+                startActivity(intent);
                 break;
             }
             case R.id.menu_item1: {

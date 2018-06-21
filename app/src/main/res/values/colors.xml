@@ -3,7 +3,7 @@
     <color name="colorPrimary">#00adef</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <!--<color name="colorAccent">#FF4081</color>-->
-    <color name="colorAccent">#FFFFFF</color>
+    <color name="colorAccent">#303F9F</color>
     <color name="colorToolbar">#FFFFFF</color>
     <color name="rippleEffectColor">#0417c1</color>
     <color name="colorButtonCad">#00adef</color>
@@ -11,4 +11,5 @@
     <color name="colorButtonEdicaoOnLineRipple">#6da40b</color>
     <color name="colorButtonEdicaoAnterior">#CCCCCC</color>
     <color name="colorButtonEdicaoAnteriorRipple">#838080</color>
+    <color name="colorHintText">#7db7c6</color>
 </resources>

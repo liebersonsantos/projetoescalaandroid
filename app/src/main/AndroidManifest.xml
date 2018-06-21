@@ -24,7 +24,7 @@
         <activity android:name=".view.LoginActivity" />
         <activity android:name=".view.CadastroActivity" />
         <activity android:name=".view.ApresentacaoActivity" />
-        <activity android:name=".view.ExemploActivity" />
+        <activity android:name=".view.EdicaoAtualActivity" />
         <activity android:name=".view.ApresentacaoRevistaActivity" />
         <activity android:name=".view.LerEdicaoMesActivity" />
         <activity android:name=".view.TelaEdicaoMesActivity" />
@@ -68,7 +68,8 @@
 
         <activity android:name=".view.NoticacaoActivity" />
         <activity android:name=".view.NotificacaoActivity" />
-        <activity android:name=".view.WebActivity"></activity>
+        <activity android:name=".view.WebActivity" />
+        <activity android:name=".view.AtendimentoLeitorActivity"></activity>
     </application>
 
 </manifest>

@@ -67,7 +67,7 @@ public class AdapterRelatedMagazine extends RecyclerView.Adapter<AdapterRelatedM
 
         public void bind(MagazineContentsRelated revista){
 
-            txtDetalhe.setText(revista.getMagazineContentRelatedDesc());
+            txtDetalhe.setText(revista.getMagazineContentRelatedDesc() + "...");
             ImageUtil.loadImage(Constantes.URL_BASE_CONTENT_RELATED + revista.getMagazineContentRelatedImg(), imgDetalhe, progressBar, R.drawable.logo);
 
         }

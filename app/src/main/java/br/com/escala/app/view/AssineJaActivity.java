@@ -19,17 +19,11 @@ public class AssineJaActivity extends AppCompatActivity {
 
         botaoAssineJa = findViewById(R.id.btn_assine_clube_id);
 
-        botaoAssineJa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(AssineJaActivity.this, CompreAppActivity.class);
-                startActivity(intent);
-                finish();
-
-            }
+        botaoAssineJa.setOnClickListener(v -> {
+            Intent intent = new Intent(AssineJaActivity.this, SaudacaoActivity.class);
+            startActivity(intent);
+            finish();
         });
-
 
     }
 

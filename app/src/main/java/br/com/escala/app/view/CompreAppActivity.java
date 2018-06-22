@@ -34,13 +34,28 @@ public class CompreAppActivity extends AppCompatActivity {
         botaoAssine = findViewById(R.id.image_botao_assine_id);
         botaoCompre = findViewById(R.id.image_botao_compre_id);
 
-
         toolbar = findViewById(R.id.toolbarId);
+
+        botaoAssine.setOnClickListener(v -> {
+            Intent intent = new Intent(this, SaudacaoActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+
+        });
+
+        botaoCompre.setOnClickListener(v -> {
+            Intent intent = new Intent(this, SaudacaoActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+
+        });
     }
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, AssineJaActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();

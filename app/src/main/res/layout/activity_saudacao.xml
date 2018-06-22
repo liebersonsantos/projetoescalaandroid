@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.com.escala.app.view.TelaSaudacaoActivity">
+    tools:context="br.com.escala.app.view.SaudacaoActivity">
 
     <ImageView
         android:id="@+id/imageView26"
@@ -24,22 +24,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="407dp"
-        android:layout_marginEnd="63dp"
-        android:layout_marginLeft="63dp"
-        android:layout_marginRight="63dp"
-        android:layout_marginStart="63dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginStart="80dp"
         android:layout_marginTop="140dp"
         android:fontFamily="sans-serif-medium"
         android:gravity="center_horizontal"
-        android:text="Bem vindo ao
-E-Banca Digital"
+        android:text="Bem vindo ao"
         android:textColor="@android:color/white"
         android:textSize="30sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView26" />
+        app:layout_constraintTop_toTopOf="@+id/imageView26"
+        app:layout_constraintVertical_bias="0.553" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginStart="60dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center_horizontal"
+        android:text="E-Banca Digital"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
     <TextView
         android:id="@+id/textView31"
@@ -50,7 +69,7 @@ E-Banca Digital"
         android:layout_marginLeft="17dp"
         android:layout_marginRight="17dp"
         android:layout_marginStart="17dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="sans-serif-light"
         android:gravity="center_horizontal"
         android:text="Muito mais que uma banca em um único APP!
@@ -63,7 +82,7 @@ real, de onde estiver :)"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView30" />
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
     <Button
         android:id="@+id/btn_comece_id"

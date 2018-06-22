@@ -264,6 +264,11 @@ public class CadastroActivity extends BaseActivity implements GoogleApiClient.On
                         } else {
                             Log.i("TAG", "criarConta: " + loginResponse.code());
                             Toast.makeText(CadastroActivity.this, "Cadastro Realizado com Sucesso", Toast.LENGTH_LONG).show();
+
+                            Intent intent = new Intent(this, LoginActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                            finish();
                         }
 
                     }, throwable -> {

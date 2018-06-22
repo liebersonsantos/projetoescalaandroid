@@ -30,7 +30,7 @@
         <activity android:name=".view.TelaEdicaoMesActivity" />
         <activity android:name=".view.AssineJaActivity" />
         <activity android:name=".view.CompreAppActivity" />
-        <activity android:name=".view.TelaSaudacaoActivity" />
+        <activity android:name=".view.SaudacaoActivity" />
         <activity android:name=".view.CupomDescontoActivity" />
         <activity android:name=".view.BaseActivity" />
 

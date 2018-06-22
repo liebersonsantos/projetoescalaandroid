@@ -81,7 +81,7 @@ public class RecyclerViewLancamentosAdapter extends RecyclerView.Adapter<Recycle
             imageViewCover = itemView.findViewById(R.id.img_revista_id);
             progressBar = itemView.findViewById(R.id.progress_bar);
             btnNavigationFree = itemView.findViewById(R.id.btn_nav_free_id);
-            imageDownloadPdf = itemView.findViewById(R.id.img_download_pdf);
+//            imageDownloadPdf = itemView.findViewById(R.id.img_download_pdf);
 
         }
 
@@ -102,15 +102,15 @@ public class RecyclerViewLancamentosAdapter extends RecyclerView.Adapter<Recycle
 
             });
 
-            imageDownloadPdf.setOnClickListener(v -> {
-
-                Intent intent = new Intent(v.getContext(), PdfViewActivity.class);
-                intent.putExtra("URL", Constantes.URL_BASE_PDF);
-                intent.putExtra("PATH", revista.getUrlPdfFree());
-                intent.putExtra("FILE_NAME", revista.getId() + ".pdf");
-                v.getContext().startActivity(intent);
-
-            });
+//            imageDownloadPdf.setOnClickListener(v -> {
+//
+//                Intent intent = new Intent(v.getContext(), PdfViewActivity.class);
+//                intent.putExtra("URL", Constantes.URL_BASE_PDF);
+//                intent.putExtra("PATH", revista.getUrlPdfFree());
+//                intent.putExtra("FILE_NAME", revista.getId() + ".pdf");
+//                v.getContext().startActivity(intent);
+//
+//            });
         }
     }
 

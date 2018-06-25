@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import java.util.List;
 
@@ -21,12 +23,14 @@ import br.com.escala.app.helper.ImageUtil;
 import br.com.escala.app.model.MagazineContentsRelated;
 import br.com.escala.app.model.Revista;
 
-public class LerEdicaoMesActivity extends BaseActivity {
+public class LerEdicaoMesActivity extends AppCompatActivity {
 
     private Button botaoLerEdicao;
-    private ImageView imgCover;
+    private ImageView imgCover, imgLogo;
     private TextView txtDescricao;
-    private ProgressBar progressBar;
+    private ProgressBar progressBar, progressBarToolbar;
+    private Toolbar toolbarLerEdicao;
+
 
     private RecyclerView recyclerView;
     private AdapterRelatedMagazine adapter;
@@ -38,7 +42,7 @@ public class LerEdicaoMesActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContainerView(R.layout.activity_ler_edicao_mes);
+        setContentView(R.layout.activity_ler_edicao_mes);
 
         revistaIntent = new Revista();
 
@@ -51,6 +55,10 @@ public class LerEdicaoMesActivity extends BaseActivity {
         initView();
         settingsAdapter();
 
+        ImageUtil.loadImage(Constantes.URL_BASE_LOGO + revistaIntent.getImageLogo(), imgLogo, progressBarToolbar, R.drawable.logo);
+        ImageUtil.loadImage(Constantes.URL_BASE_COVER + revistaIntent.getImage(), imgCover, progressBar, R.drawable.logo);
+        txtDescricao.setText(revistaIntent.getDescricao());
+
         botaoLerEdicao.setOnClickListener(v -> {
 
             Intent intent = new Intent(this, ApresentacaoRevistaActivity.class);
@@ -60,8 +68,7 @@ public class LerEdicaoMesActivity extends BaseActivity {
             startActivity(intent);
         });
 
-        ImageUtil.loadImage(Constantes.URL_BASE_COVER + revistaIntent.getImage(), imgCover, progressBar, R.drawable.logo);
-        txtDescricao.setText(revistaIntent.getDescricao());
+
 
     }
 
@@ -71,6 +78,8 @@ public class LerEdicaoMesActivity extends BaseActivity {
         imgCover = findViewById(R.id.image_edicao_detalhe_id);
         txtDescricao = findViewById(R.id.txt_descricao);
         progressBar = findViewById(R.id.progress_bar);
+        progressBarToolbar = findViewById(R.id.progressBar_toolbar);
+        imgLogo = findViewById(R.id.img_logo_revista);
         recyclerView = findViewById(R.id.recyclerView_id);
     }
 

@@ -24,6 +24,15 @@
             android:id="@+id/menu_atendimento">
         </item>
 
+    </group>
+
+
+    <item
+        android:id="@+id/sub_menu_materias"
+        android:title="Destaques">
+
+        <menu>
+
         <item
             android:title="@string/item_1"
             android:id="@+id/menu_item1">
@@ -49,7 +58,10 @@
             android:id="@+id/menu_logoff">
         </item>
 
-    </group>
+        </menu>
+
+    </item>
+
 
 
 </menu>

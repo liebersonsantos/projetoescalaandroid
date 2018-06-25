@@ -14,6 +14,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
     <ImageView
+        android:id="@+id/img_logo_revista"
         android:layout_width="123dp"
         android:layout_height="25dp"
         android:layout_marginBottom="15dp"
@@ -22,10 +23,28 @@
         android:layout_marginRight="118dp"
         android:layout_marginStart="119dp"
         android:layout_marginTop="15dp"
-        android:src="@drawable/logo_corpo_laranja"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbarId"
+        android:src="@mipmap/ic_launcher"
+        android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/toolbarId"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar_toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.556"
+        app:layout_constraintStart_toStartOf="@+id/toolbar_revista_id"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 </android.support.constraint.ConstraintLayout>

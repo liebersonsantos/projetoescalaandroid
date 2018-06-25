@@ -11,7 +11,7 @@ tools:context="br.com.escala.app.view.ApresentacaoRevistaActivity">
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/toolbar"/>
+    <include layout="@layout/toolbar_revista"/>
 
     <TextView
         android:id="@+id/txt_edition_month"
@@ -39,7 +39,7 @@ tools:context="br.com.escala.app.view.ApresentacaoRevistaActivity">
         android:layout_marginStart="73dp"
         android:layout_marginTop="100dp"
         android:scaleType="fitXY"
-        android:src="@drawable/foto_corpo_corpo"
+        android:src="@mipmap/ic_launcher_round"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

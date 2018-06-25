@@ -11,20 +11,16 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.escala.app.R;
 import br.com.escala.app.helper.Constantes;
 import br.com.escala.app.helper.ImageUtil;
 import br.com.escala.app.model.Revista;
-import br.com.escala.app.view.ApresentacaoRevistaActivity;
-import br.com.escala.app.view.EdicaoAtualActivity;
+import br.com.escala.app.view.BaseActivity;
 import br.com.escala.app.view.LerEdicaoMesActivity;
-import br.com.escala.app.view.PdfViewActivity;
 import br.com.escala.app.view.fragment.LancamentosFragment;
-
-import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class RecyclerViewLancamentosAdapter extends RecyclerView.Adapter<RecyclerViewLancamentosAdapter.LancamentosViewHolder>{
 
@@ -53,15 +49,12 @@ public class RecyclerViewLancamentosAdapter extends RecyclerView.Adapter<Recycle
     public void onBindViewHolder(@NonNull RecyclerViewLancamentosAdapter.LancamentosViewHolder holder, int position) {
 
         holder.bind(revistaList.get(position));
-
     }
 
     @Override
     public int getItemCount() {
         return (revistaList != null && revistaList.size() > 0) ? revistaList.size() : 0;
     }
-
-
 
     public static class LancamentosViewHolder extends RecyclerView.ViewHolder{
 
@@ -98,7 +91,6 @@ public class RecyclerViewLancamentosAdapter extends RecyclerView.Adapter<Recycle
                 Intent intent = new Intent(v.getContext(), LerEdicaoMesActivity.class);
                 intent.putExtra("REVISTA", revista);
                 v.getContext().startActivity(intent);
-
 
             });
 

@@ -5,23 +5,25 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import br.com.escala.app.R;
 import br.com.escala.app.helper.Constantes;
 import br.com.escala.app.helper.ImageUtil;
 import br.com.escala.app.model.Revista;
 
-public class ApresentacaoRevistaActivity extends BaseActivity {
+public class ApresentacaoRevistaActivity extends AppCompatActivity {
 
-    private ImageView imgLogoTipo, imgCover;
+    private ImageView imgLogo, imgCover;
     private TextView txtLancamento;
     private Button btnMonthEdition, btnLastEdition, btnContentOnLine;
-    private ProgressBar progressBar, progressBarT;
+    private ProgressBar progressBar, progressBarToolbar;
     private Revista revista;
 
 
@@ -29,21 +31,18 @@ public class ApresentacaoRevistaActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContainerView(R.layout.activity_apresentacao_revista);
+        setContentView(R.layout.activity_apresentacao_revista);
 
         revista = LerEdicaoMesActivity.revistaIntent;
 
+        initViews();
 
-        imgLogoTipo = findViewById(R.id.img_logo_toolbar);
-        imgCover = findViewById(R.id.imagem_detalhe_Id);
-        txtLancamento = findViewById(R.id.txt_edition_month);
-        btnMonthEdition = findViewById(R.id.btn_edicao_mes_id);
-        btnLastEdition = findViewById(R.id.btn_edicao_anterior_id);
-        btnContentOnLine = findViewById(R.id.btn_conteudo_on_id);
-        progressBar = findViewById(R.id.progress_bar);
 
         ImageUtil.loadImage(Constantes.URL_BASE_COVER + revista.getImage(), imgCover, progressBar, R.drawable.logo);
+        ImageUtil.loadImage(Constantes.URL_BASE_LOGO + revista.getImageLogo(), imgLogo, progressBarToolbar, R.drawable.logo);
         txtLancamento.setText(revista.getDataLancamento());
+
+
 
         btnContentOnLine.setOnClickListener(v -> {
             Intent intent = new Intent(this, WebActivity.class);
@@ -61,6 +60,18 @@ public class ApresentacaoRevistaActivity extends BaseActivity {
 
         });
 
+    }
+
+    private void initViews() {
+
+        imgLogo = findViewById(R.id.img_logo_revista);
+        imgCover = findViewById(R.id.imagem_detalhe_Id);
+        txtLancamento = findViewById(R.id.txt_edition_month);
+        btnMonthEdition = findViewById(R.id.btn_edicao_mes_id);
+        btnLastEdition = findViewById(R.id.btn_edicao_anterior_id);
+        btnContentOnLine = findViewById(R.id.btn_conteudo_on_id);
+        progressBar = findViewById(R.id.progress_bar);
+        progressBarToolbar = findViewById(R.id.progressBar_toolbar);
     }
 }
 

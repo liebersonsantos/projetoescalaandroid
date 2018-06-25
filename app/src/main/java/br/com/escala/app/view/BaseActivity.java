@@ -1,6 +1,7 @@
 package br.com.escala.app.view;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -10,15 +11,18 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import java.util.List;
+
 import br.com.escala.app.R;
 import br.com.escala.app.helper.Preferencias;
-
+import br.com.escala.app.model.MagazineContentsRelated;
+import br.com.escala.app.model.Revista;
 import io.reactivex.disposables.CompositeDisposable;
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -32,6 +36,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
     private FrameLayout container;
 
+    private Revista revista;
 
     private ViewPager mViewPager;
 
@@ -44,6 +49,15 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
         container = findViewById(R.id.container);
 
+
+
+//        Bundle extra = getIntent().getExtras();
+//        if( extra != null ){
+//            revista = getIntent().getExtras().getParcelable("REVISTA");
+//        }else {
+//            Log.i("TAG", "onCreateBUNDLE: " + revista);
+//        }
+
     }
 
     public void setTabsPage() {
@@ -55,14 +69,12 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
             mViewPager.setAdapter(framentStatePageAdapter);
             mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
         }
 
         if (tabLayout != null) {
 
             tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
             tabLayout.setVisibility(View.VISIBLE);
-
         }
 
     }
@@ -79,6 +91,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
         toolbar = findViewById(R.id.toolbarId);
         drawerLayout = findViewById(R.id.drawerLayoutId);
+
 
         if (toolbar != null) {
 
@@ -97,7 +110,25 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         }
 
         navigationView = findViewById(R.id.navViewId);
-        navigationView.setNavigationItemSelectedListener(this);
+        if (navigationView != null){
+
+            Menu menu = navigationView.getMenu();
+//
+//            List<MagazineContentsRelated> magazineContentsRelateds = revista.getMagazineContentsRelated();
+//
+//            for (int i = 0; i < magazineContentsRelateds.size(); i++) {
+//
+//                menu.findItem(R.id.menu_item1).setTitle(magazineContentsRelateds.get(i).describeContents());
+//
+//            }
+
+            menu.findItem(R.id.menu_item1).setTitle("teste1");
+            menu.findItem(R.id.menu_item2).setTitle("teste2");
+            menu.findItem(R.id.menu_item3).setTitle("teste3");
+            menu.findItem(R.id.menu_item4).setTitle("teste4");
+
+            navigationView.setNavigationItemSelectedListener(this);
+        }
     }
 
 
@@ -187,6 +218,13 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         }
 
         super.onDestroy();
+    }
+
+    public void toExchangeMenu(){
+
+
 
     }
+
+
 }

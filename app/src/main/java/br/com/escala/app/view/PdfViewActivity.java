@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import br.com.escala.app.R;
 import br.com.escala.app.helper.Constantes;
@@ -50,7 +51,7 @@ import okio.Okio;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
-public class PdfViewActivity extends BaseActivity {
+public class PdfViewActivity extends BaseActivity{
 
     private static int REQUEST_WRITE_PERMISSIONS = 0;
     private PDFView pdfView;
@@ -65,7 +66,7 @@ public class PdfViewActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pdf_view);
+        setContainerView(R.layout.activity_pdf_view);
 
         url = getIntent().getStringExtra("URL");
         fileName = getIntent().getStringExtra("FILE_NAME");

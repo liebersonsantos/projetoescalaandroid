@@ -3,11 +3,11 @@ package br.com.escala.app.view;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v7.app.ActionBarDrawerToggle;
 
 import br.com.escala.app.R;
 
 public class ApresentacaoActivity extends BaseActivity{
-
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -18,6 +18,8 @@ public class ApresentacaoActivity extends BaseActivity{
         setFragmentsPageAdapter(new SectionsPageAdapter(getSupportFragmentManager()));
 
         setTabsPage();
+
+        setDrawerVisibility(false);
 
     }
 

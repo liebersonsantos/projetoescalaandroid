@@ -62,15 +62,22 @@ public class PdfViewActivity extends BaseActivity{
     private String url;
     private AlertDialog.Builder builder;
     private Dialog dialog;
+    private Revista revista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContainerView(R.layout.activity_pdf_view);
 
-        url = getIntent().getStringExtra("URL");
-        fileName = getIntent().getStringExtra("FILE_NAME");
-        path = getIntent().getStringExtra("PATH");
+        revista = LerEdicaoMesActivity.revistaIntent;
+
+        Bundle extra = getIntent().getExtras();
+
+        if( extra != null ){
+            url = getIntent().getStringExtra("URL");
+            fileName = getIntent().getStringExtra("FILE_NAME");
+            path = getIntent().getStringExtra("PATH");
+        }
 
         progressBar = findViewById(R.id.progressBar);
 
@@ -79,6 +86,14 @@ public class PdfViewActivity extends BaseActivity{
         if (getPermissions()) {
             getPdf(url);
         }
+
+        setDrawerVisibility(true);
+
+        if (PdfViewActivity.this.setDrawerVisibility(true)){
+            setMenuDrawer(revista);
+            setImageDetail(revista);
+        }
+
     }
 
     private void getPdf(String url) {
@@ -272,9 +287,6 @@ public class PdfViewActivity extends BaseActivity{
 
         super.onDestroy();
     }
-
-
-
 
 }
 

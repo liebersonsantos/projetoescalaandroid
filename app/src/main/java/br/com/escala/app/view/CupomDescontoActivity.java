@@ -63,48 +63,49 @@ public class CupomDescontoActivity extends AppCompatActivity implements Navigati
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
 
-            case R.id.menu_edicao_atual: {
-                Toast.makeText(this, "Edição Atual", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.menu_edicoes_anteriores: {
-                Toast.makeText(this, "Edições Anteriores", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.menu_clube_assinante: {
-                Intent intent = new Intent(this, CupomDescontoActivity.class);
-                startActivity(intent);
-                //Toast.makeText(this, "Clube do Assinante", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.menu_atendimento: {
-                Toast.makeText(this, "Atendimento ao Leitor", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.menu_item1: {
-                Toast.makeText(this, "Item 1", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.menu_item2: {
-                Toast.makeText(this, "Item 2", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.menu_item3: {
-                Toast.makeText(this, "Item 3", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.menu_item4: {
-                Toast.makeText(this, "Item 4", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.menu_logoff: {
-                Toast.makeText(this, "Item 5", Toast.LENGTH_SHORT).show();
-                break;
-            }
-
-        }
+//        switch (item.getItemId()) {
+//
+//            case R.id.menu_edicao_atual: {
+//                Toast.makeText(this, "Edição Atual", Toast.LENGTH_SHORT).show();
+//                break;
+//            }
+//            case R.id.menu_edicoes_anteriores: {
+//                Toast.makeText(this, "Edições Anteriores", Toast.LENGTH_SHORT).show();
+//                break;
+//            }
+//            case R.id.menu_clube_assinante: {
+//                Intent intent = new Intent(this, CupomDescontoActivity.class);
+//                startActivity(intent);
+//                //Toast.makeText(this, "Clube do Assinante", Toast.LENGTH_SHORT).show();
+//                break;
+//            }
+//            case R.id.menu_atendimento: {
+//                Toast.makeText(this, "Atendimento ao Leitor", Toast.LENGTH_SHORT).show();
+//                break;
+//            }
+//            case R.id.menu_item1: {
+//                Toast.makeText(this, "Item 1", Toast.LENGTH_SHORT).show();
+//                break;
+//            }
+//            case R.id.menu_item2: {
+//                Toast.makeText(this, "Item 2", Toast.LENGTH_SHORT).show();
+//                break;
+//            }
+//            case R.id.menu_item3: {
+//                Toast.makeText(this, "Item 3", Toast.LENGTH_SHORT).show();
+//                break;
+//            }
+//            case R.id.menu_item4: {
+//                Toast.makeText(this, "Item 4", Toast.LENGTH_SHORT).show();
+//                break;
+//            }
+//            case R.id.menu_logoff: {
+//                Toast.makeText(this, "Item 5", Toast.LENGTH_SHORT).show();
+//                break;
+//            }
+//
+//        }
 
         drawerLayout.closeDrawer(GravityCompat.START);
 

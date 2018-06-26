@@ -11,15 +11,20 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.List;
 
 import br.com.escala.app.R;
+import br.com.escala.app.helper.Constantes;
+import br.com.escala.app.helper.ImageUtil;
 import br.com.escala.app.helper.Preferencias;
 import br.com.escala.app.model.MagazineContentsRelated;
 import br.com.escala.app.model.Revista;
@@ -33,12 +38,12 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
     protected CompositeDisposable disposable = new CompositeDisposable(); //guarda os caras que encadeiam as stream do rx
 
-
     private FrameLayout container;
 
-    private Revista revista;
-
     private ViewPager mViewPager;
+    private Revista revista;
+    private ImageView imageToolbar, imageNavHeader;
+    private ProgressBar progressBarToolbar, progressBarImageNav;
 
     private int tabSize;
 
@@ -48,15 +53,6 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_base);
 
         container = findViewById(R.id.container);
-
-
-
-//        Bundle extra = getIntent().getExtras();
-//        if( extra != null ){
-//            revista = getIntent().getExtras().getParcelable("REVISTA");
-//        }else {
-//            Log.i("TAG", "onCreateBUNDLE: " + revista);
-//        }
 
     }
 
@@ -87,11 +83,10 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    private void setNavigationDrawer() { //--> --> --> ctrl + alt + m cria metodo
+    public void setNavigationDrawer() { //--> --> --> ctrl + alt + m cria metodo
 
         toolbar = findViewById(R.id.toolbarId);
         drawerLayout = findViewById(R.id.drawerLayoutId);
-
 
         if (toolbar != null) {
 
@@ -110,25 +105,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         }
 
         navigationView = findViewById(R.id.navViewId);
-        if (navigationView != null){
 
-            Menu menu = navigationView.getMenu();
-//
-//            List<MagazineContentsRelated> magazineContentsRelateds = revista.getMagazineContentsRelated();
-//
-//            for (int i = 0; i < magazineContentsRelateds.size(); i++) {
-//
-//                menu.findItem(R.id.menu_item1).setTitle(magazineContentsRelateds.get(i).describeContents());
-//
-//            }
+        navigationView.setNavigationItemSelectedListener(this);
 
-            menu.findItem(R.id.menu_item1).setTitle("teste1");
-            menu.findItem(R.id.menu_item2).setTitle("teste2");
-            menu.findItem(R.id.menu_item3).setTitle("teste3");
-            menu.findItem(R.id.menu_item4).setTitle("teste4");
-
-            navigationView.setNavigationItemSelectedListener(this);
-        }
     }
 
 
@@ -173,22 +152,6 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             }
-            case R.id.menu_item1: {
-                Toast.makeText(this, "Item 1", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.menu_item2: {
-                Toast.makeText(this, "Item 2", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.menu_item3: {
-                Toast.makeText(this, "Item 3", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.menu_item4: {
-                Toast.makeText(this, "Item 4", Toast.LENGTH_SHORT).show();
-                break;
-            }
             case R.id.menu_logoff: {
                 Preferencias preferencias = new Preferencias(this);
                 preferencias.clearPreferences();
@@ -206,25 +169,57 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    public void setFragmentsPageAdapter(FragmentStatePagerAdapter adapter){
+    public void setFragmentsPageAdapter(FragmentStatePagerAdapter adapter) {
 
         this.framentStatePageAdapter = adapter;
     }
 
     @Override
     protected void onDestroy() {
-        if (disposable != null){
+        if (disposable != null) {
             disposable.dispose();
         }
 
         super.onDestroy();
     }
 
-    public void toExchangeMenu(){
+    public boolean setDrawerVisibility(boolean show) {
 
+        if (show) {
+            setNavigationDrawer();
+        } else {
+            toolbar.setNavigationIcon(null);
+            navigationView.setVisibility(View.GONE);
 
+        }
+        return show;
+    }
+
+    public void setMenuDrawer(Revista revista) {
+
+        List<MagazineContentsRelated> magazineContentsRelateds = revista.getMagazineContentsRelated();
+
+        if (navigationView != null) {
+            Menu menu = navigationView.getMenu();
+
+            for (int i = 0; i < magazineContentsRelateds.size(); i++) {
+                menu.add(R.id.sub_menu_materias, Menu.NONE, 0, "Item1").setTitle(magazineContentsRelateds.get(i).getMagazineContentRelatedDesc());
+            }
+        }
 
     }
 
+    public void setImageDetail(Revista revista){
 
+        imageNavHeader = findViewById(R.id.img_nav_header);
+        progressBarImageNav = findViewById(R.id.progress_bar_nav_header);
+        imageToolbar = findViewById(R.id.img_logo_toolbar_padrao);
+        progressBarToolbar = findViewById(R.id.progress_bar_padrao);
+
+        View view = navigationView.inflateHeaderView(R.id.navViewId);
+
+//        ImageUtil.loadImage(Constantes.URL_BASE_LOGO + revista.getImageLogo(), imageNavHeader, progressBarImageNav, R.drawable.logo);
+//        ImageUtil.loadImage(Constantes.URL_BASE_LOGO + revista.getImageLogo(), imageToolbar, progressBarToolbar, R.drawable.logo);
+
+    }
 }

@@ -109,20 +109,3 @@
 
 
 </android.support.constraint.ConstraintLayout>
-
-
-
-
-
-    <!--<com.astuetz.PagerSlidingTabStrip-->
-    <!--android:id="@+id/tabs"-->
-    <!--app:pstsShouldExpand="true"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="48dp"-->
-    <!--android:textSize="14sp"-->
-    <!--android:textColor="@android:color/white"-->
-    <!--app:pstsDividerColor="@color/colorPrimary"-->
-    <!--app:pstsIndicatorColor="@color/colorPrimary"-->
-    <!--app:pstsUnderlineColor="@android:color/white"-->
-    <!--app:pstsTabPaddingLeftRight="14dp">-->
-    <!--</com.astuetz.PagerSlidingTabStrip>-->

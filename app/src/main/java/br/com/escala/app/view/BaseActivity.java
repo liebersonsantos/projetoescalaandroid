@@ -11,7 +11,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -106,8 +105,18 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView = findViewById(R.id.navViewId);
 
-        navigationView.setNavigationItemSelectedListener(this);
 
+//        if (navigationView != null){
+//
+//            Menu menu = navigationView.getMenu();
+//
+//            menu.findItem(R.id.menu_item1).setTitle("teste1");
+//            menu.findItem(R.id.menu_item2).setTitle("teste2");
+//            menu.findItem(R.id.menu_item3).setTitle("teste3");
+//            menu.findItem(R.id.menu_item4).setTitle("teste4");
+//
+//            navigationView.setNavigationItemSelectedListener(this);
+//        }
     }
 
 
@@ -188,9 +197,10 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         if (show) {
             setNavigationDrawer();
         } else {
-            toolbar.setNavigationIcon(null);
-            navigationView.setVisibility(View.GONE);
-
+            if (toolbar.getNavigationIcon() != null) {
+                toolbar.setNavigationIcon(null);
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            }
         }
         return show;
     }
@@ -209,17 +219,15 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    public void setImageDetail(Revista revista){
+    public void setImageDetail(Revista revista) {
 
-        imageNavHeader = findViewById(R.id.img_nav_header);
-        progressBarImageNav = findViewById(R.id.progress_bar_nav_header);
-        imageToolbar = findViewById(R.id.img_logo_toolbar_padrao);
-        progressBarToolbar = findViewById(R.id.progress_bar_padrao);
+        imageNavHeader = navigationView.getHeaderView(0).findViewById(R.id.img_nav_header);
+        progressBarImageNav = navigationView.getHeaderView(0).findViewById(R.id.progress_bar_nav_header);
+        imageToolbar = container.findViewById(R.id.img_logo_toolbar_padrao);
+        progressBarToolbar = container.findViewById(R.id.progress_bar_padrao);
 
-        View view = navigationView.inflateHeaderView(R.id.navViewId);
-
-//        ImageUtil.loadImage(Constantes.URL_BASE_LOGO + revista.getImageLogo(), imageNavHeader, progressBarImageNav, R.drawable.logo);
-//        ImageUtil.loadImage(Constantes.URL_BASE_LOGO + revista.getImageLogo(), imageToolbar, progressBarToolbar, R.drawable.logo);
+        ImageUtil.loadImage(Constantes.URL_BASE_LOGO + revista.getImageLogo(), imageNavHeader, progressBarImageNav, R.drawable.logo);
+        ImageUtil.loadImage(Constantes.URL_BASE_LOGO + revista.getImageLogo(), imageToolbar, progressBarToolbar, R.drawable.logo);
 
     }
 }

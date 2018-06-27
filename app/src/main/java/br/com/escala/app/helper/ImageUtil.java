@@ -15,8 +15,7 @@ public class ImageUtil {
 
     public static void loadImage(String url, ImageView imageView, ProgressBar progressBar, int defaultImage) {
 
-        progressBar.setVisibility(View.VISIBLE);
-
+        setVisibility(progressBar, View.VISIBLE);
 
         if (url == null) {
             imageView.setImageResource(defaultImage);
@@ -31,13 +30,12 @@ public class ImageUtil {
                 .into(imageView, new Callback() {
                     @Override
                     public void onSuccess() {
-                        progressBar.setVisibility(View.GONE);
+                        setVisibility(progressBar, View.GONE);
                     }
 
                     @Override
                     public void onError(Exception e) {
-                        progressBar.setVisibility(View.VISIBLE);
-
+                        setVisibility(progressBar, View.VISIBLE);
 
                         Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
                                 .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).error(defaultImage)
@@ -46,12 +44,12 @@ public class ImageUtil {
                                 .into(imageView, new Callback() {
                                     @Override
                                     public void onSuccess() {
-                                        progressBar.setVisibility(View.GONE);
+                                        setVisibility(progressBar, View.GONE);
                                     }
 
                                     @Override
                                     public void onError(Exception e) {
-                                        progressBar.setVisibility(View.VISIBLE);
+                                        setVisibility(progressBar, View.VISIBLE);
                                     }
                                 });
 
@@ -95,6 +93,12 @@ public class ImageUtil {
         @Override
         public String key() {
             return maxWidth + "x" + maxHeight;
+        }
+    }
+
+    private static void setVisibility(View view, int visibility){
+        if (view != null) {
+            view.setVisibility(visibility);
         }
     }
 }

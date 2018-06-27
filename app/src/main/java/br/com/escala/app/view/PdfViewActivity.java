@@ -86,14 +86,15 @@ public class PdfViewActivity extends BaseActivity{
         if (getPermissions()) {
             getPdf(url);
         }
+    }
 
-        setDrawerVisibility(true);
-
-        if (PdfViewActivity.this.setDrawerVisibility(true)){
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (setDrawerVisibility(true)){
             setMenuDrawer(revista);
             setImageDetail(revista);
         }
-
     }
 
     private void getPdf(String url) {

@@ -69,19 +69,12 @@ public class AdapterRelatedMagazine extends RecyclerView.Adapter<AdapterRelatedM
 
             txtDetalhe.setText(revista.getMagazineContentRelatedDesc() + "...");
             ImageUtil.loadImage(Constantes.URL_BASE_CONTENT_RELATED + revista.getMagazineContentRelatedImg(), imgDetalhe, progressBar, R.drawable.logo);
-
         }
     }
 
     public void setRevistaList(List<MagazineContentsRelated> revistas){
         this.revistaList = revistas;
         notifyDataSetChanged();
-
     }
-    //
-    //        notifyDataSetChanged();
-    //        this.magazineContentsRelateds = detail;
-//    public void setDetail(List<MagazineContentsRelated> detail){
 
-//    }
 }

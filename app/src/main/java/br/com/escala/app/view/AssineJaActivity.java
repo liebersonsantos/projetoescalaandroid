@@ -20,7 +20,7 @@ public class AssineJaActivity extends AppCompatActivity {
         botaoAssineJa = findViewById(R.id.btn_assine_clube_id);
 
         botaoAssineJa.setOnClickListener(v -> {
-            Intent intent = new Intent(AssineJaActivity.this, SaudacaoActivity.class);
+            Intent intent = new Intent(AssineJaActivity.this, CompreAppActivity.class);
             startActivity(intent);
             finish();
         });

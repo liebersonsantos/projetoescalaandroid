@@ -3,16 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--<item-->
-        <!--android:id="@+id/buscar"-->
-        <!--android:title="Buscar"/>-->
+    <item
+        android:id="@+id/settings_id_menu"
+        app:showAsAction="collapseActionView"
+        android:title="Configurações" />
 
     <item
-        android:id="@+id/buscarId"
-        android:icon="@drawable/ic_search_black_24dp"
-        app:showAsAction="always"
-        android:title="Buscar" />
-
-
+        android:id="@+id/buscar_menu_nav"
+        app:showAsAction="collapseActionView"
+        android:title="Logoff" />
 
 </menu>

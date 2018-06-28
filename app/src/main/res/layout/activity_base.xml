@@ -10,11 +10,12 @@
     tools:openDrawer="start"
     tools:context="br.com.escala.app.view.BaseActivity">
 
-
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+    <!--<include layout="@layout/toolbar"/>-->
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navViewId"

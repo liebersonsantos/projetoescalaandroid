@@ -69,6 +69,8 @@ public class CadastroActivity extends BaseActivity implements GoogleApiClient.On
 
         initViews();
 
+        setDrawerVisibility(false);
+
         mAuth = FirebaseAuth.getInstance();
 
         if (savedInstanceState == null) {

@@ -89,7 +89,8 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
         if (toolbar != null) {
 
-            toolbar.inflateMenu(R.menu.menu_toolbar);
+            toolbar.inflateMenu(R.menu.menu_nav);
+
             setSupportActionBar(toolbar);
 
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this
@@ -105,18 +106,6 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView = findViewById(R.id.navViewId);
 
-
-//        if (navigationView != null){
-//
-//            Menu menu = navigationView.getMenu();
-//
-//            menu.findItem(R.id.menu_item1).setTitle("teste1");
-//            menu.findItem(R.id.menu_item2).setTitle("teste2");
-//            menu.findItem(R.id.menu_item3).setTitle("teste3");
-//            menu.findItem(R.id.menu_item4).setTitle("teste4");
-//
-//            navigationView.setNavigationItemSelectedListener(this);
-//        }
     }
 
 
@@ -197,6 +186,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         if (show) {
             setNavigationDrawer();
         } else {
+
             if (toolbar.getNavigationIcon() != null) {
                 toolbar.setNavigationIcon(null);
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);

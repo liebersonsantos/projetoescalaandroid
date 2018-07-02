@@ -62,7 +62,7 @@ public class AdapterRelatedMagazine extends RecyclerView.Adapter<AdapterRelatedM
 
             imgDetalhe = itemView.findViewById(R.id.img_detalhe_revista);
             txtDetalhe = itemView.findViewById(R.id.txt_detalhe_revista);
-            progressBar = itemView.findViewById(R.id.progress_bar);
+            progressBar = itemView.findViewById(R.id.progress_bar_category);
         }
 
         public void bind(MagazineContentsRelated revista){

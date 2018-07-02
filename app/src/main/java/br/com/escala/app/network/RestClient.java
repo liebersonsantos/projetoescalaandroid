@@ -24,7 +24,6 @@ public class RestClient {
 
     public static Api getInstance() {
 
-
         if (retrofit == null) {
             OkHttpClient httpClient = new OkHttpClient.Builder()
                     .addNetworkInterceptor(new StethoInterceptor()) //vejo o que mando e recebo
@@ -46,7 +45,6 @@ public class RestClient {
     }
 
     public static Api getInstanceLogin(Context context) {
-
 
         if (retrofit == null) {
             OkHttpClient httpClient = new OkHttpClient.Builder()

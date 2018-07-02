@@ -16,8 +16,6 @@ import br.com.escala.app.model.Revista;
 import br.com.escala.app.view.PdfViewActivity;
 import br.com.escala.app.view.fragment.MinhaBancaFragment;
 
-import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 public class AdapterBanca extends RecyclerView.Adapter<AdapterBanca.BancaViewHolder>{
@@ -83,7 +81,7 @@ public class AdapterBanca extends RecyclerView.Adapter<AdapterBanca.BancaViewHol
 //            nomeRevista = itemView.findViewById(R.id.txt_nome_revista);
 //            dataLancamento = itemView.findViewById(R.id.txt_mes_lancamento);
             imageViewCover = itemView.findViewById(R.id.imagem_mbanca_id);
-            progressBar = itemView.findViewById(R.id.progress_bar);
+            progressBar = itemView.findViewById(R.id.progress_bar_category);
 
         }
     }

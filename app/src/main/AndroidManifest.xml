@@ -69,7 +69,8 @@
         <activity android:name=".view.NoticacaoActivity" />
         <activity android:name=".view.NotificacaoActivity" />
         <activity android:name=".view.WebActivity" />
-        <activity android:name=".view.AtendimentoLeitorActivity"></activity>
+        <activity android:name=".view.AtendimentoLeitorActivity" />
+        <activity android:name=".view.ContentSelectedCategoryActivity"></activity>
     </application>
 
 </manifest>

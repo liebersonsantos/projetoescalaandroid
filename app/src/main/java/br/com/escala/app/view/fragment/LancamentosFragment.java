@@ -44,7 +44,6 @@ public class LancamentosFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_lancamentos, container, false);
 
 //        revistaList = gerarDados(10);
@@ -88,9 +87,6 @@ public class LancamentosFragment extends Fragment {
     }
 
 }
-
-
-
 
 //    private List<Revista> gerarDados(int quant) {
 //

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
@@ -57,7 +58,9 @@ public class LerEdicaoMesActivity extends AppCompatActivity {
 
         ImageUtil.loadImage(Constantes.URL_BASE_LOGO + revistaIntent.getImageLogo(), imgLogo, progressBarToolbar, R.drawable.logo);
         ImageUtil.loadImage(Constantes.URL_BASE_COVER + revistaIntent.getImage(), imgCover, progressBar, R.drawable.logo);
-        txtDescricao.setText(revistaIntent.getDescricao());
+
+   //     txtDescricao.setFilters(new InputFilter[]{ new InputFilter.LengthFilter(220)});
+        txtDescricao.setText(revistaIntent.getDescricao() + "...");
 
         botaoLerEdicao.setOnClickListener(v -> {
 
@@ -77,7 +80,7 @@ public class LerEdicaoMesActivity extends AppCompatActivity {
         botaoLerEdicao =  findViewById(R.id.btn_ler_edicao_mes_detalhe_id);
         imgCover = findViewById(R.id.image_edicao_detalhe_id);
         txtDescricao = findViewById(R.id.txt_descricao);
-        progressBar = findViewById(R.id.progress_bar);
+        progressBar = findViewById(R.id.progress_bar_category);
         progressBarToolbar = findViewById(R.id.progressBar_toolbar);
         imgLogo = findViewById(R.id.img_logo_revista);
         recyclerView = findViewById(R.id.recyclerView_id);
@@ -89,7 +92,7 @@ public class LerEdicaoMesActivity extends AppCompatActivity {
 
         adapter = new AdapterRelatedMagazine();
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 

@@ -3,7 +3,6 @@ package br.com.escala.app.adapters;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +11,11 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 import br.com.escala.app.R;
 import br.com.escala.app.helper.Constantes;
 import br.com.escala.app.helper.ImageUtil;
 import br.com.escala.app.model.Revista;
 import br.com.escala.app.view.LerEdicaoMesActivity;
-import br.com.escala.app.view.PdfViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +37,6 @@ public class AdapterLogin extends RecyclerView.Adapter<AdapterLogin.LancamentosV
     public AdapterLogin.LancamentosViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_login, parent, false);
-
 
         return new AdapterLogin.LancamentosViewHolder(view);
     }
@@ -73,8 +68,8 @@ public class AdapterLogin extends RecyclerView.Adapter<AdapterLogin.LancamentosV
 
 //            nomeRevista = itemView.findViewById(R.id.txt_nome_revista);
 //            dataLancamento = itemView.findViewById(R.id.txt_mes_lancamento);
-            imageViewCover = itemView.findViewById(R.id.img_revista_id);
-            progressBar = itemView.findViewById(R.id.progress_bar);
+            imageViewCover = itemView.findViewById(R.id.img_category);
+            progressBar = itemView.findViewById(R.id.progress_bar_category);
             btnNavigationFree = itemView.findViewById(R.id.btn_nav_free_id);
 
         }

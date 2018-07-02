@@ -1,17 +1,14 @@
 package br.com.escala.app.view;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import br.com.escala.app.R;
 import br.com.escala.app.helper.Constantes;
@@ -70,7 +67,7 @@ public class ApresentacaoRevistaActivity extends AppCompatActivity {
         btnMonthEdition = findViewById(R.id.btn_edicao_mes_id);
         btnLastEdition = findViewById(R.id.btn_edicao_anterior_id);
         btnContentOnLine = findViewById(R.id.btn_conteudo_on_id);
-        progressBar = findViewById(R.id.progress_bar);
+        progressBar = findViewById(R.id.progress_bar_category);
         progressBarToolbar = findViewById(R.id.progressBar_toolbar);
     }
 }

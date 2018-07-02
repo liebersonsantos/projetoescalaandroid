@@ -17,6 +17,7 @@ import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import retrofit2.http.Streaming;
 
 public interface Api {
@@ -31,6 +32,7 @@ public interface Api {
 //    Call<ResponseBody> login(@Body String email, String senha);
     @POST("escala/controller_webservice/wsLogin")
     Single<LoginToken> login(@Body Login login);
+
     @PUT("wsUpdateUser")
     Single<Response> updateUser(String token, @Body Usuario usuario); //sempre que eu passar um objeto, eu uso @body para pegar o obj e transforma em um json
 
@@ -42,4 +44,11 @@ public interface Api {
     @GET("escala/controller_webservice/wsMagazines")
     Call<MagazineRespose> magazines();
 
+    @GET("escala/controller_webservice/wsMagazineCategoryList")
+    Call<MagazineRespose> selectCategory(@Query("magazineCatId") String categoriaId);
+
+//    @GET("escala/controller_webservice/wsMagazineCategoryList")
+//    Call<MagazineRespose> selectCategory(@Query("magazineCatId") String categoriaId);
+
 }
+

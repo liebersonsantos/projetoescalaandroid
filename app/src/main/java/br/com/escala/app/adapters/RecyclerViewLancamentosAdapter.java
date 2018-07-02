@@ -18,7 +18,6 @@ import br.com.escala.app.R;
 import br.com.escala.app.helper.Constantes;
 import br.com.escala.app.helper.ImageUtil;
 import br.com.escala.app.model.Revista;
-import br.com.escala.app.view.BaseActivity;
 import br.com.escala.app.view.LerEdicaoMesActivity;
 import br.com.escala.app.view.fragment.LancamentosFragment;
 
@@ -71,8 +70,8 @@ public class RecyclerViewLancamentosAdapter extends RecyclerView.Adapter<Recycle
 
             nomeRevista = itemView.findViewById(R.id.txt_name_magazine);
             dataLancamento = itemView.findViewById(R.id.txt_edition_month);
-            imageViewCover = itemView.findViewById(R.id.img_revista_id);
-            progressBar = itemView.findViewById(R.id.progress_bar);
+            imageViewCover = itemView.findViewById(R.id.img_category);
+            progressBar = itemView.findViewById(R.id.progress_bar_category);
             btnNavigationFree = itemView.findViewById(R.id.btn_nav_free_id);
 //            imageDownloadPdf = itemView.findViewById(R.id.img_download_pdf);
 

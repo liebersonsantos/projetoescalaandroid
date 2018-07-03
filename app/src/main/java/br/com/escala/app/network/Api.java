@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.escala.app.model.Login;
 import br.com.escala.app.model.LoginToken;
+import br.com.escala.app.model.MagazineCategoryResponse;
 import br.com.escala.app.model.MagazineRespose;
 import br.com.escala.app.model.Revista;
 import br.com.escala.app.model.Usuario;
@@ -45,7 +46,7 @@ public interface Api {
     Call<MagazineRespose> magazines();
 
     @GET("escala/controller_webservice/wsMagazineCategoryList")
-    Call<MagazineRespose> selectCategory(@Query("magazineCatId") String categoriaId);
+    Call<MagazineCategoryResponse> selectCategory(@Query("magazineCatId") String categoriaId);
 
 //    @GET("escala/controller_webservice/wsMagazineCategoryList")
 //    Call<MagazineRespose> selectCategory(@Query("magazineCatId") String categoriaId);

@@ -42,7 +42,7 @@ public class CategoriasFragment extends Fragment {
             public void onClick(View v) {
 
                 Intent intent = new Intent(getContext(), ContentSelectedCategoryActivity.class);
-                intent.putExtra("IDCATEGORY", "1");
+                intent.putExtra("IDCATEGORY", "2");
                 startActivity(intent);
 
             }

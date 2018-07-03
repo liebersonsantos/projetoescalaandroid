@@ -2,6 +2,7 @@ package br.com.escala.app.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,16 +61,20 @@ public class AdapterContentSelectedCategory extends RecyclerView.Adapter<Adapter
             super(itemView);
 
             imageViewCover = itemView.findViewById(R.id.img_category);
-            textViewLaunchDate = itemView.findViewById(R.id.txt_edition_month);
+            textViewLaunchDate = itemView.findViewById(R.id.txt_edition_month_id);
             textViewMagazine = itemView.findViewById(R.id.txt_name_magazine);
             progressBarCategory = itemView.findViewById(R.id.progress_bar_category);
 
         }
 
         public void bind (Revista revista){
-//            Revista revista = revistaList.get(position);
 
             ImageUtil.loadImage(Constantes.URL_BASE_COVER + revista.getImage(), imageViewCover, progressBarCategory, R.drawable.logo);
+
+            Log.i("TAG", "bindTEXTOLANCAMENTO: " + revista.getDataRegistro());
+
+            textViewMagazine.setText(revista.getNomeRevista());
+            textViewLaunchDate.setText(revista.getDataRegistro());
 
         }
 

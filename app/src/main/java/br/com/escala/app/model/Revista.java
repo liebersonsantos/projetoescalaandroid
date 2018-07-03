@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Revista implements Parcelable{
+public class Revista implements Parcelable {
 
     @SerializedName("magazine_id")
     private long id;
@@ -30,10 +30,16 @@ public class Revista implements Parcelable{
     @SerializedName("magazine_logo")
     private String imageLogo;
 
+    @SerializedName("magazine_register")
+    private String dataRegistro;
+
+    @SerializedName("magazine_cat_name")
+    private String nomeCategoria;
+
     @SerializedName("magazine_pdf_free")
     private String urlPdfFree;
 
-    @SerializedName("pdffull")
+    @SerializedName("magazine_pdf_full")
     private String urlPdfFull;
 
     @SerializedName("magazine_content_online")
@@ -45,6 +51,22 @@ public class Revista implements Parcelable{
     public Revista() {
     }
 
+    public Revista(long id, String categoria_id, String descricao, String nomeRevista, String dataLancamento, String image, String imageLogo, String dataRegistro, String nomeCategoria, String urlPdfFree, String urlPdfFull, String contentOnLine, List<MagazineContentsRelated> magazineContentsRelated) {
+        this.id = id;
+        this.categoria_id = categoria_id;
+        this.descricao = descricao;
+        this.nomeRevista = nomeRevista;
+        this.dataLancamento = dataLancamento;
+        this.image = image;
+        this.imageLogo = imageLogo;
+        this.dataRegistro = dataRegistro;
+        this.nomeCategoria = nomeCategoria;
+        this.urlPdfFree = urlPdfFree;
+        this.urlPdfFull = urlPdfFull;
+        this.contentOnLine = contentOnLine;
+        this.magazineContentsRelated = magazineContentsRelated;
+    }
+
     protected Revista(Parcel in) {
         id = in.readLong();
         categoria_id = in.readString();
@@ -53,6 +75,8 @@ public class Revista implements Parcelable{
         dataLancamento = in.readString();
         image = in.readString();
         imageLogo = in.readString();
+        dataRegistro = in.readString();
+        nomeCategoria = in.readString();
         urlPdfFree = in.readString();
         urlPdfFull = in.readString();
         contentOnLine = in.readString();
@@ -85,6 +109,8 @@ public class Revista implements Parcelable{
         dest.writeString(dataLancamento);
         dest.writeString(image);
         dest.writeString(imageLogo);
+        dest.writeString(dataRegistro);
+        dest.writeString(nomeCategoria);
         dest.writeString(urlPdfFree);
         dest.writeString(urlPdfFull);
         dest.writeString(contentOnLine);
@@ -147,6 +173,22 @@ public class Revista implements Parcelable{
         this.imageLogo = imageLogo;
     }
 
+    public String getDataRegistro() {
+        return dataRegistro;
+    }
+
+    public void setDataRegistro(String dataRegistro) {
+        this.dataRegistro = dataRegistro;
+    }
+
+    public String getNomeCategoria() {
+        return nomeCategoria;
+    }
+
+    public void setNomeCategoria(String nomeCategoria) {
+        this.nomeCategoria = nomeCategoria;
+    }
+
     public String getUrlPdfFree() {
         return urlPdfFree;
     }
@@ -178,6 +220,7 @@ public class Revista implements Parcelable{
     public void setMagazineContentsRelated(List<MagazineContentsRelated> magazineContentsRelated) {
         this.magazineContentsRelated = magazineContentsRelated;
     }
+}
 
     //    protected Revista(Parcel in) {
 //        id = in.readLong();
@@ -282,7 +325,7 @@ public class Revista implements Parcelable{
 //    public void setUrlPdfFull(String urlPdfFull) {
 //        this.urlPdfFull = urlPdfFull;
 //    }
-}
+
 
 //    protected Revista(Parcel in) {
 //        id = in.readLong();

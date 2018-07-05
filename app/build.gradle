@@ -69,6 +69,10 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:${rootProject.rxandroid}"
     /*############################################################################*/
 
+    /*###########################Butter Knife######################################*/
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
     /*#############MULTIDEX##############*/
     implementation "com.android.support:multidex:${rootProject.multidex}"
 

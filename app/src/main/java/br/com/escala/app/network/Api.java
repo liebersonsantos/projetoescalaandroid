@@ -2,6 +2,7 @@ package br.com.escala.app.network;
 
 import java.util.List;
 
+import br.com.escala.app.model.CategoryResponse;
 import br.com.escala.app.model.Login;
 import br.com.escala.app.model.LoginToken;
 import br.com.escala.app.model.MagazineCategoryResponse;
@@ -47,6 +48,9 @@ public interface Api {
 
     @GET("escala/controller_webservice/wsMagazineCategoryList")
     Call<MagazineCategoryResponse> selectCategory(@Query("magazineCatId") String categoriaId);
+
+    @GET("escala/controller_webservice/wsCategories")
+    Call<CategoryResponse> getAllCategories();
 
 //    @GET("escala/controller_webservice/wsMagazineCategoryList")
 //    Call<MagazineRespose> selectCategory(@Query("magazineCatId") String categoriaId);

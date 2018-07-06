@@ -16,6 +16,8 @@ import br.com.escala.app.R;
 import br.com.escala.app.helper.Constantes;
 import br.com.escala.app.helper.ImageUtil;
 import br.com.escala.app.model.MagazineContentsRelated;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class AdapterRelatedMagazine extends RecyclerView.Adapter<AdapterRelatedMagazine.DetailViewHolder>{
 
@@ -42,7 +44,6 @@ public class AdapterRelatedMagazine extends RecyclerView.Adapter<AdapterRelatedM
     public void onBindViewHolder(@NonNull DetailViewHolder holder, int position) {
 
         holder.bind(revistaList.get(position));
-
     }
 
     @Override
@@ -52,17 +53,17 @@ public class AdapterRelatedMagazine extends RecyclerView.Adapter<AdapterRelatedM
 
     public class DetailViewHolder extends RecyclerView.ViewHolder{
 
-        private ImageView imgDetalhe;
-        private TextView txtDetalhe;
-        private ProgressBar progressBar;
-
+        @BindView(R.id.img_detalhe_revista)
+        ImageView imgDetalhe;
+        @BindView(R.id.txt_detalhe_revista)
+        TextView txtDetalhe;
+        @BindView(R.id.progress_bar)
+        ProgressBar progressBar;
 
         public DetailViewHolder(View itemView) {
             super(itemView);
 
-            imgDetalhe = itemView.findViewById(R.id.img_detalhe_revista);
-            txtDetalhe = itemView.findViewById(R.id.txt_detalhe_revista);
-            progressBar = itemView.findViewById(R.id.progress_bar);
+            ButterKnife.bind(this, itemView);
         }
 
         public void bind(MagazineContentsRelated revista){

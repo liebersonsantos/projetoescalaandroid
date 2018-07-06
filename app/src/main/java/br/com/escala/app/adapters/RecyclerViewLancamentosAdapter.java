@@ -20,6 +20,8 @@ import br.com.escala.app.helper.ImageUtil;
 import br.com.escala.app.model.Revista;
 import br.com.escala.app.view.LerEdicaoMesActivity;
 import br.com.escala.app.view.fragment.LancamentosFragment;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class RecyclerViewLancamentosAdapter extends RecyclerView.Adapter<RecyclerViewLancamentosAdapter.LancamentosViewHolder>{
 
@@ -57,51 +59,37 @@ public class RecyclerViewLancamentosAdapter extends RecyclerView.Adapter<Recycle
 
     public static class LancamentosViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView nomeRevista, dataLancamento;
-        public ImageView imageViewCover, imageDownloadPdf;
-        private Button btnNavigationFree;
+        @BindView(R.id.txt_name_magazine)
+        TextView nomeRevista;
+        @BindView(R.id.txt_edition_month)
+        TextView dataLancamento;
+        @BindView(R.id.img_category)
+        ImageView imageViewCover;
+        @BindView(R.id.progress_bar_category)
+        ProgressBar progressBar;
+
         private View view;
-        private ProgressBar progressBar;
 
         public LancamentosViewHolder(View itemView) {
             super(itemView);
 
-            view = itemView;
-
-            nomeRevista = itemView.findViewById(R.id.txt_name_magazine);
-            dataLancamento = itemView.findViewById(R.id.txt_edition_month);
-            imageViewCover = itemView.findViewById(R.id.img_category);
-            progressBar = itemView.findViewById(R.id.progress_bar_category);
-            btnNavigationFree = itemView.findViewById(R.id.btn_nav_free_id);
-//            imageDownloadPdf = itemView.findViewById(R.id.img_download_pdf);
+            ButterKnife.bind(this,itemView);
+//          imageDownloadPdf = itemView.findViewById(R.id.img_download_pdf);
 
         }
 
         public void bind(Revista revista){
-
-//        Revista revista = revistaList.get(position);
 
             ImageUtil.loadImage(Constantes.URL_BASE_COVER + revista.getImage(), imageViewCover, progressBar, R.drawable.logo);
             nomeRevista.setText(revista.getNomeRevista());
             dataLancamento.setText(revista.getDataLancamento());
 
             imageViewCover.setOnClickListener(v -> {
-
                 Intent intent = new Intent(v.getContext(), LerEdicaoMesActivity.class);
                 intent.putExtra("REVISTA", revista);
                 v.getContext().startActivity(intent);
 
             });
-
-//            imageDownloadPdf.setOnClickListener(v -> {
-//
-//                Intent intent = new Intent(v.getContext(), PdfViewActivity.class);
-//                intent.putExtra("URL", Constantes.URL_BASE_PDF);
-//                intent.putExtra("PATH", revista.getUrlPdfFree());
-//                intent.putExtra("FILE_NAME", revista.getId() + ".pdf");
-//                v.getContext().startActivity(intent);
-//
-//            });
         }
     }
 

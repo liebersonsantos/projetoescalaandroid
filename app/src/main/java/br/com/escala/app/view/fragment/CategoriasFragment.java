@@ -75,28 +75,7 @@ public class CategoriasFragment extends Fragment {
             }
         });
 
-
-
-
-
         return view;
     }
 
 }
-
-
-//    private ImageView imgArqDec;
-
-
-//        imgArqDec = view.findViewById(R.id.image_arq_dec);
-//
-//        imgArqDec.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Intent intent = new Intent(getContext(), ContentSelectedCategoryActivity.class);
-//                intent.putExtra("IDCATEGORY", "2");
-//                startActivity(intent);
-//
-//            }
-//        });

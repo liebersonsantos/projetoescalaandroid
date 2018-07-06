@@ -19,6 +19,8 @@ import br.com.escala.app.model.Revista;
 import br.com.escala.app.network.RestClient;
 import br.com.escala.app.view.LoginActivity;
 import br.com.escala.app.view.PdfViewActivity;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,15 +32,15 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class LancamentosFragment extends Fragment {
+    @BindView(R.id.recyclerView_lanc_id)
+    RecyclerView recyclerView;
 
-    private RecyclerView recyclerView;
     private RecyclerViewLancamentosAdapter adapter;
     private List<Revista> revistaList;
     private LoginActivity loginActivity;
 
 
     public LancamentosFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -46,19 +48,20 @@ public class LancamentosFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_lancamentos, container, false);
 
-//        revistaList = gerarDados(10);
+        ButterKnife.bind(this, view);
 
-        recyclerView = view.findViewById(R.id.recyclerView_lanc_id);
+        settingsRecyclerView();
+        getWsMagazineOn();
 
+        return view;
+    }
+
+    private void settingsRecyclerView() {
         adapter = new RecyclerViewLancamentosAdapter();
 
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
-
-        getWsMagazineOn();
-
-        return view;
     }
 
     private void getWsMagazineOn() {

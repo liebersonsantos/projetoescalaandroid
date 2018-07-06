@@ -11,13 +11,17 @@ import br.com.escala.app.R;
 import br.com.escala.app.adapters.AdapterContentSelectedCategory;
 import br.com.escala.app.model.MagazineCategoryResponse;
 import br.com.escala.app.network.RestClient;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ContentSelectedCategoryActivity extends BaseActivity {
 
-    private RecyclerView recyclerView;
+    @BindView(R.id.recyclerView_content_category)
+    RecyclerView recyclerView;
+
     private AdapterContentSelectedCategory adapterContentSelectedCategory;
     private String idCategory;
 
@@ -31,10 +35,11 @@ public class ContentSelectedCategoryActivity extends BaseActivity {
         Bundle extra = getIntent().getExtras();
 
         if (extra != null){
-            idCategory = getIntent().getStringExtra("IDCATEGORY");
+            idCategory = getIntent().getStringExtra("ID_CATEGORY");
         }
 
-        initViews();
+        ButterKnife.bind(this);
+
         settingsAdapter();
         getCategorySelected();
 
@@ -47,7 +52,7 @@ public class ContentSelectedCategoryActivity extends BaseActivity {
 
                 if (response.isSuccessful() && response.body() != null){
 
-                    Log.i("TAG", "onResponse: " + response.body().getResultado());
+                    Log.i("TAG", "onResponseGetCategorySelected: " + response.body().getResultado());
 
                     adapterContentSelectedCategory.setRevistaList(response.body().getRevistas());
                 }else {
@@ -63,7 +68,6 @@ public class ContentSelectedCategoryActivity extends BaseActivity {
                 Log.i("TAG", "onFailure: " + t.getMessage());
 
                 Toast.makeText(ContentSelectedCategoryActivity.this, "Verificar Retrofit", Toast.LENGTH_SHORT).show();
-
             }
         });
     }
@@ -79,8 +83,4 @@ public class ContentSelectedCategoryActivity extends BaseActivity {
 
     }
 
-    private void initViews() {
-
-        recyclerView = findViewById(R.id.recyclerView_content_category);
-    }
 }

@@ -1,5 +1,6 @@
 package br.com.escala.app.adapters;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +19,13 @@ import br.com.escala.app.helper.Constantes;
 import br.com.escala.app.helper.ImageUtil;
 import br.com.escala.app.model.Categories;
 import br.com.escala.app.model.MagazineContentsRelated;
+import br.com.escala.app.view.ContentSelectedCategoryActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.OnItemClick;
+import butterknife.OnItemSelected;
+import butterknife.OnTouch;
 
 public class AdapterCategories extends RecyclerView.Adapter<AdapterCategories.CategoriesViewHolder>{
 
@@ -72,6 +79,15 @@ public class AdapterCategories extends RecyclerView.Adapter<AdapterCategories.Ca
 
             textItemCategory.setText(categories.getMagazineCatName());
             ImageUtil.loadImage(Constantes.URL_BASE_CATEGORY_COVERS + categories.getMagazineCatCover(), imgItemCategory, progressBarCategory, R.drawable.logo);
+
+            imgItemCategory.setOnClickListener(v -> {
+
+                Intent intent = new Intent(v.getContext(), ContentSelectedCategoryActivity.class);
+                intent.putExtra("ID_CATEGORY", categories.getMagazineCatId());
+                v.getContext().startActivity(intent);
+
+            });
+
         }
 
     }

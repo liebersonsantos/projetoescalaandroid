@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import br.com.escala.app.R;
 import br.com.escala.app.helper.ImageUtil;
@@ -51,10 +52,12 @@ public class AdapterBanca extends RecyclerView.Adapter<AdapterBanca.BancaViewHol
 
         holder.imageViewCover.setOnClickListener(v -> {
 
-            Intent intent  = new Intent(v.getContext(), PdfViewActivity.class);
-            intent.putExtra("URL", revista.getUrlPdfFree());
-            intent.putExtra("FILE", revista.getId() + ".pdf");
-            v.getContext().startActivity(intent);
+            Toast.makeText(v.getContext(), "Em breve teremos conteúdo nesta seção. Obrigado!", Toast.LENGTH_SHORT).show();
+
+//            Intent intent  = new Intent(v.getContext(), PdfViewActivity.class);
+//            intent.putExtra("URL", revista.getUrlPdfFree());
+//            intent.putExtra("FILE", revista.getId() + ".pdf");
+//            v.getContext().startActivity(intent);
         });
 
     }

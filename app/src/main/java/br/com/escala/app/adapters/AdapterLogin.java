@@ -16,6 +16,8 @@ import br.com.escala.app.helper.Constantes;
 import br.com.escala.app.helper.ImageUtil;
 import br.com.escala.app.model.Revista;
 import br.com.escala.app.view.LerEdicaoMesActivity;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,33 +51,25 @@ public class AdapterLogin extends RecyclerView.Adapter<AdapterLogin.LancamentosV
 
     @Override
     public int getItemCount() {
-//        return revistaList.size();
         return (revistaList != null && revistaList.size() > 0) ? revistaList.size() : 0;
     }
 
     public static class LancamentosViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView textViewMagazine, textViewLaunchDate;
-        private Button btnNavigationFree;
-        public ImageView imageViewCover;
-        private View view;
-        private ProgressBar progressBar;
+        @BindView(R.id.btn_nav_free_id)
+        Button btnNavigationFree;
+        @BindView(R.id.img_category)
+        ImageView imageViewCover;
+        @BindView(R.id.progress_bar_category)
+        ProgressBar progressBar;
 
         public LancamentosViewHolder(View itemView) {
             super(itemView);
 
-            view = itemView;
-
-//            nomeRevista = itemView.findViewById(R.id.txt_nome_revista);
-//            dataLancamento = itemView.findViewById(R.id.txt_mes_lancamento);
-            imageViewCover = itemView.findViewById(R.id.img_category);
-            progressBar = itemView.findViewById(R.id.progress_bar_category);
-            btnNavigationFree = itemView.findViewById(R.id.btn_nav_free_id);
-
+            ButterKnife.bind(this, itemView);
         }
 
         public void bind(Revista revista){
-//            Revista revista = revistaList.get(position);
 
             ImageUtil.loadImage(Constantes.URL_BASE_COVER + revista.getImage(),imageViewCover, progressBar, R.drawable.logo);
 
@@ -83,9 +77,6 @@ public class AdapterLogin extends RecyclerView.Adapter<AdapterLogin.LancamentosV
 
                 Intent intent = new Intent(v.getContext(), LerEdicaoMesActivity.class);
                 intent.putExtra("REVISTA", revista);
-//                intent.putExtra("URL", Constantes.URL_BASE_PDF);
-//                intent.putExtra("PATH", revista.getUrlPdfFree());
-//                intent.putExtra("FILE_NAME", revista.getId() + ".pdf");
                 v.getContext().startActivity(intent);
 
             });

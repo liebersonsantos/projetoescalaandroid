@@ -52,6 +52,9 @@ public interface Api {
     @GET("escala/controller_webservice/wsCategories")
     Call<CategoryResponse> getAllCategories();
 
+//    @GET("escala/controller_webservice/wsCategories")
+//    Call<CategoryResponse> getAllLogos();
+
 //    @GET("escala/controller_webservice/wsMagazineCategoryList")
 //    Call<MagazineRespose> selectCategory(@Query("magazineCatId") String categoriaId);
 

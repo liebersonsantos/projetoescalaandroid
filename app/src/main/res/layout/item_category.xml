@@ -16,7 +16,6 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="6dp"
-        android:elevation="2dp"
         android:scaleType="fitXY"
         android:src="@mipmap/ic_launcher"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,23 +27,23 @@
 
     <TextView
         android:id="@+id/text_item_category"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="8dp"
+        android:text="kkkkkkkkkkkkkkk"
         android:textAlignment="center"
-        android:text="kkkkkkkkkkkkkkkkkkkkkkk"
         android:textColor="@android:color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_item_category"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_item_category"
+        app:layout_constraintStart_toStartOf="@+id/imageView_item_category"
+        app:layout_constraintTop_toTopOf="@+id/imageView_item_category" />
 
     <ProgressBar
         android:id="@+id/progressBar_item_category"

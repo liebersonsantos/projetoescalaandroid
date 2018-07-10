@@ -46,15 +46,23 @@ public class CategoriasFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_categorias, container, false);
-
         ButterKnife.bind(this, view);
 
+        settingsAdapter();
+        allCategories();
+
+        return view;
+    }
+
+    private void settingsAdapter() {
         adapterCategories = new AdapterCategories();
 
         recyclerViewCat.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewCat.setItemAnimator(new DefaultItemAnimator());
         recyclerViewCat.setAdapter(adapterCategories);
+    }
 
+    private void allCategories() {
         RestClient.getInstance().getAllCategories().enqueue(new Callback<CategoryResponse>() {
             @Override
             public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
@@ -74,8 +82,6 @@ public class CategoriasFragment extends Fragment {
                 Toast.makeText(getContext(), "Erro ao carregar Dados", Toast.LENGTH_SHORT).show();
             }
         });
-
-        return view;
     }
 
 }
